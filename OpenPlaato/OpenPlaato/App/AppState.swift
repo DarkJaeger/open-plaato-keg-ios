@@ -12,6 +12,25 @@ class AppState: ObservableObject {
     private let api = APIService.shared
     private let ws  = WebSocketService.shared
 
+    private let kegOrderKey = "kegOrder"
+
+    var orderedKegs: [Keg] {
+        let savedOrder = UserDefaults.standard.stringArray(forKey: kegOrderKey) ?? []
+        guard !savedOrder.isEmpty else { return kegs }
+        let lookup = Dictionary(uniqueKeysWithValues: kegs.map { ($0.id, $0) })
+        var ordered: [Keg] = savedOrder.compactMap { lookup[$0] }
+        let remaining = kegs.filter { keg in !savedOrder.contains(keg.id) }
+        ordered.append(contentsOf: remaining)
+        return ordered
+    }
+
+    func moveKeg(from source: IndexSet, to destination: Int) {
+        var ids = orderedKegs.map(\.id)
+        ids.move(fromOffsets: source, toOffset: destination)
+        UserDefaults.standard.set(ids, forKey: kegOrderKey)
+        objectWillChange.send()
+    }
+
     init() {
         ws.onKegUpdate = { [weak self] updatedKeg in
             guard let self else { return }
