@@ -1,13 +1,25 @@
 import SwiftUI
 
-// MARK: - Brand Colors (matching Android amber palette)
+// MARK: - Brand Colors (matching Android dark theme)
 
 extension Color {
+    // Amber brand
     static let amber400 = Color(red: 0xFB/255, green: 0xBF/255, blue: 0x24/255)  // #FBBF24
     static let amber500 = Color(red: 0xF5/255, green: 0x9E/255, blue: 0x0B/255)  // #F59E0B
     static let amber600 = Color(red: 0xD9/255, green: 0x77/255, blue: 0x06/255)  // #D97706
     static let amberDark = Color(red: 0x92/255, green: 0x40/255, blue: 0x0E/255) // #92400E
 
+    // Dark surfaces (matching Android)
+    static let darkBackground   = Color(red: 0x0F/255, green: 0x0F/255, blue: 0x0F/255) // #0F0F0F
+    static let darkSurface      = Color(red: 0x1A/255, green: 0x1A/255, blue: 0x1A/255) // #1A1A1A
+    static let darkSurfaceVar   = Color(red: 0x24/255, green: 0x24/255, blue: 0x24/255) // #242424
+    static let darkCard         = Color(red: 0x1E/255, green: 0x1E/255, blue: 0x1E/255) // #1E1E1E
+    static let darkDivider      = Color(red: 0x2A/255, green: 0x2A/255, blue: 0x2A/255) // #2A2A2A
+    static let onBackground     = Color(red: 0xF5/255, green: 0xF5/255, blue: 0xF5/255) // #F5F5F5
+    static let onSurface        = Color(red: 0xE5/255, green: 0xE5/255, blue: 0xE5/255) // #E5E5E5
+    static let onSurfaceMuted   = Color(red: 0x9C/255, green: 0xA3/255, blue: 0xAF/255) // #9CA3AF
+
+    // Status colors
     static let pouringGreen = Color(red: 0x22/255, green: 0xC5/255, blue: 0x5E/255) // #22C55E
     static let lowRed = Color(red: 0xEF/255, green: 0x44/255, blue: 0x44/255)       // #EF4444
 
