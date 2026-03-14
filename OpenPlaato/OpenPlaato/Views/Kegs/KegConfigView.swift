@@ -41,11 +41,11 @@ struct KegConfigView: View {
     private var liveReadingsSection: some View {
         Section("Live Readings") {
             LabeledContent("Level", value: keg.percentFormatted)
-            LabeledContent("Amount Left", value: keg.amountFormatted)
+            LabeledContent(keg.measureUnit == "1" ? "Weight" : "Volume", value: keg.amountFormatted)
             LabeledContent("Temperature", value: keg.tempFormatted)
             LabeledContent("Pouring", value: keg.isPouringBool ? "Yes" : "No")
-            if let raw = keg.weightRaw, !raw.isEmpty {
-                LabeledContent("Raw Weight", value: "\(raw) kg")
+            if let raw = keg.weightRaw, let rawVal = Double(raw), rawVal > -1000, rawVal < 500 {
+                LabeledContent("Raw Weight", value: String(format: "%.2f kg", rawVal))
             }
             if let fw = keg.firmwareVersion, !fw.isEmpty {
                 LabeledContent("Firmware", value: fw)

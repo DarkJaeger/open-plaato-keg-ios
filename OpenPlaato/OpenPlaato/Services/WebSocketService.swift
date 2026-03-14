@@ -75,11 +75,22 @@ class WebSocketService: NSObject, ObservableObject, URLSessionWebSocketDelegate 
         guard notifEnabled else { return }
 
         if wasPouring && !isNowPouring, let lp = keg.lastPourDouble, lp > 0 {
-            let unit = keg.beerLeftUnit ?? "L"
-            let pourStr = String(format: "%.1f %@", lp, unit)
+            let beerUnit = keg.beerLeftUnit ?? "L"
+            let (mult, displayUnit): (Double, String) = {
+                switch beerUnit {
+                case "lbs": return (16.0, "oz")
+                case "kg":  return (1000.0, "g")
+                case "gal": return (128.0, "oz")
+                default:    return (1000.0, "ml")
+                }
+            }()
+            let amount = Int(lp * mult)
+            let minAmount = displayUnit == "oz" ? 5 : 148
+            guard amount >= minAmount else { return }
+
             sendLocalNotification(
-                title: "Pour Complete",
-                body: "\(keg.name): \(pourStr) poured. \(keg.percentFormatted) remaining."
+                title: "Pour on \(keg.name)",
+                body: "Last pour \u{00b7} \(amount) \(displayUnit). \(keg.percentFormatted) remaining."
             )
         }
     }
