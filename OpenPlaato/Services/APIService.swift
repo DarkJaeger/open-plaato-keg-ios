@@ -30,7 +30,7 @@ class APIService {
         return try JSONDecoder().decode([Keg].self, from: data)
     }
 
-    func fetchKeg(_ id: Int) async throws -> Keg {
+    func fetchKeg(_ id: String) async throws -> Keg {
         let (data, _) = try await URLSession.shared.data(from: url("/api/kegs/\(id)"))
         return try JSONDecoder().decode(Keg.self, from: data)
     }
@@ -48,7 +48,7 @@ class APIService {
     }
 
     // MARK: - Image Upload
-    func uploadHandleImage(_ imageData: Data, tapId: Int) async throws -> String {
+    func uploadHandleImage(_ imageData: Data, tapId: String) async throws -> String {
         var req = URLRequest(url: url("/api/taps/\(tapId)/handle-image"))
         req.httpMethod = "POST"
         let boundary = UUID().uuidString

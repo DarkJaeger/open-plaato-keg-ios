@@ -3,7 +3,6 @@ import SwiftUI
 struct TapRowView: View {
     let tap: Tap
     let keg: Keg?
-    let beer: Beer?
 
     var body: some View {
         HStack(spacing: 12) {
@@ -28,8 +27,8 @@ struct TapRowView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(tap.name).font(.headline)
-                if let beer = beer {
-                    Text(beer.name).font(.subheadline).foregroundColor(.secondary)
+                if let style = tap.style, !style.isEmpty {
+                    Text(style).font(.subheadline).foregroundColor(.secondary)
                 } else {
                     Text("No keg assigned").font(.subheadline).foregroundColor(.secondary)
                 }
@@ -45,18 +44,12 @@ struct TapRowView: View {
                     }
                     Text(keg.percentFormatted)
                         .font(.title3).bold()
-                        .foregroundColor(percentColor(keg.percentOfBeerLeft ?? 0))
+                        .foregroundColor(Color.forPercent(keg.percentDouble))
                     Text(keg.tempFormatted)
                         .font(.caption).foregroundColor(.secondary)
                 }
             }
         }
         .padding(.vertical, 4)
-    }
-
-    private func percentColor(_ pct: Double) -> Color {
-        if pct > 50 { return .green }
-        if pct > 20 { return .orange }
-        return .red
     }
 }

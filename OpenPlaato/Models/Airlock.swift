@@ -1,25 +1,31 @@
 import Foundation
 
 struct Airlock: Identifiable, Codable {
-    var deviceId: String
-    var name: String?
-    var gravity: Double?
-    var temperature: Double?
-    var battery: Int?
-
-    var id: String { deviceId }
+    let id: String
+    var label: String?
+    var temperature: String?
+    var bubblesPerMin: String?
+    var brewfatherSg: String?
+    var brewfatherOg: String?
 
     enum CodingKeys: String, CodingKey {
-        case deviceId = "device_id"
-        case name, gravity, temperature, battery
+        case id, label, temperature
+        case bubblesPerMin = "bubbles_per_min"
+        case brewfatherSg  = "brewfather_sg"
+        case brewfatherOg  = "brewfather_og"
     }
 
+    var name: String { label ?? id }
+
     var gravityFormatted: String {
-        guard let g = gravity else { return "—" }
-        return String(format: "%.3f SG", g)
+        guard let sg = brewfatherSg, !sg.isEmpty, let val = Double(sg) else { return "—" }
+        return String(format: "%.3f SG", val)
     }
+
     var tempFormatted: String {
-        guard let t = temperature else { return "—" }
-        return String(format: "%.1f°F", t)
+        guard let t = temperature, !t.isEmpty, let val = Double(t) else { return "—" }
+        // API returns celsius for airlocks
+        let f = val * 9/5 + 32
+        return String(format: "%.1f°F", f)
     }
 }

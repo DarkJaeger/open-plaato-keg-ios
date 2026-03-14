@@ -11,18 +11,21 @@ struct KegDetailView: View {
             Section("Status") {
                 LabeledContent("Level", value: keg.percentFormatted)
                 LabeledContent("Temperature", value: keg.tempFormatted)
-                if let liters = keg.litersRemaining {
-                    LabeledContent("Remaining", value: String(format: "%.2f L", liters))
+                if let amount = keg.amountLeft {
+                    LabeledContent("Amount Left", value: "\(amount) L")
                 }
                 LabeledContent("Pouring", value: keg.isPouringBool ? "Yes" : "No")
+                if let lastPour = keg.lastPourString {
+                    LabeledContent("Last Pour", value: lastPour)
+                }
             }
 
             if let beer = beer {
                 Section("Beer") {
                     LabeledContent("Name", value: beer.name)
                     if let style = beer.style { LabeledContent("Style", value: style) }
-                    if let abv = beer.abv { LabeledContent("ABV", value: String(format: "%.1f%%", abv)) }
-                    if let ibu = beer.ibu { LabeledContent("IBU", value: "\(ibu)") }
+                    if !beer.abvFormatted.isEmpty { LabeledContent("ABV", value: beer.abvFormatted) }
+                    if !beer.ibuFormatted.isEmpty { LabeledContent("IBU", value: beer.ibuFormatted) }
                 }
             }
         }

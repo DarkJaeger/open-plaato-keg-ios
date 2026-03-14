@@ -1,5 +1,4 @@
 import Foundation
-import Combine
 
 @MainActor
 class AppState: ObservableObject {
@@ -40,10 +39,5 @@ class AppState: ObservableObject {
     func keg(for tap: Tap) -> Keg? {
         guard let id = tap.kegId else { return nil }
         return kegs.first { $0.id == id }
-    }
-
-    func beer(for keg: Keg) -> Beer? {
-        guard let id = keg.beerId else { return nil }
-        return beers.first { $0.id == id }
     }
 }

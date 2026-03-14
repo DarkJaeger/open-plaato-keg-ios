@@ -1,31 +1,43 @@
 import Foundation
 
 struct Keg: Identifiable, Codable {
-    let id: Int
-    var name: String
-    var beerId: Int?
-    var percentOfBeerLeft: Double?
-    var kegTemperature: Double?
+    let id: String
+    var myLabel: String?
+    var kegTemperature: String?
+    var kegTemperatureString: String?
+    var percentOfBeerLeft: String?
     var isPouring: String?
-    var litersRemaining: Double?
+    var amountLeft: String?
+    var myBeerStyle: String?
+    var maxKegVolume: String?
+    var lastPourString: String?
 
     enum CodingKeys: String, CodingKey {
         case id
-        case name
-        case beerId = "beer_id"
-        case percentOfBeerLeft = "percent_of_beer_left"
-        case kegTemperature = "keg_temperature"
-        case isPouring = "is_pouring"
-        case litersRemaining = "liters_remaining"
+        case myLabel              = "my_label"
+        case kegTemperature       = "keg_temperature"
+        case kegTemperatureString = "keg_temperature_string"
+        case percentOfBeerLeft    = "percent_of_beer_left"
+        case isPouring            = "is_pouring"
+        case amountLeft           = "amount_left"
+        case myBeerStyle          = "my_beer_style"
+        case maxKegVolume         = "max_keg_volume"
+        case lastPourString       = "last_pour_string"
     }
 
+    var name: String { myLabel ?? id }
     var isPouringBool: Bool { isPouring == "1" }
+
     var tempFormatted: String {
-        guard let t = kegTemperature else { return "—" }
-        return String(format: "%.1f°F", t)
+        kegTemperatureString ?? (kegTemperature.map { "\($0)°F" } ?? "—")
     }
+
     var percentFormatted: String {
-        guard let p = percentOfBeerLeft else { return "—" }
-        return String(format: "%.0f%%", p)
+        guard let p = percentOfBeerLeft, let val = Double(p) else { return "—" }
+        return String(format: "%.0f%%", val)
+    }
+
+    var percentDouble: Double {
+        Double(percentOfBeerLeft ?? "0") ?? 0
     }
 }
