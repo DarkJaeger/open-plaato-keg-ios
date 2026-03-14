@@ -1,0 +1,729 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		513736EB2F64DD370056ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 513736EA2F64DD370056ECA1 /* Assets.xcassets */; };
+		513736F82F64DD370056ECA1 /* OpenPlaatoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513736F72F64DD370056ECA1 /* OpenPlaatoTests.swift */; };
+		513737022F64DD380056ECA1 /* OpenPlaatoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513737012F64DD380056ECA1 /* OpenPlaatoUITests.swift */; };
+		513737042F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513737032F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift */; };
+		517B04572F64EDB0002A3C46 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04372F64EDB0002A3C46 /* APIService.swift */; };
+		517B04582F64EDB0002A3C46 /* WebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04382F64EDB0002A3C46 /* WebSocketService.swift */; };
+		517B04592F64EDB0002A3C46 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B043B2F64EDB0002A3C46 /* SettingsView.swift */; };
+		517B045A2F64EDB0002A3C46 /* AirlockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B043D2F64EDB0002A3C46 /* AirlockListView.swift */; };
+		517B045B2F64EDB0002A3C46 /* KegListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B043F2F64EDB0002A3C46 /* KegListView.swift */; };
+		517B045C2F64EDB0002A3C46 /* KegDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04402F64EDB0002A3C46 /* KegDetailView.swift */; };
+		517B045D2F64EDB0002A3C46 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04422F64EDB0002A3C46 /* ImagePickerView.swift */; };
+		517B045E2F64EDB0002A3C46 /* TapEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04432F64EDB0002A3C46 /* TapEditView.swift */; };
+		517B045F2F64EDB0002A3C46 /* TapRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04452F64EDB0002A3C46 /* TapRowView.swift */; };
+		517B04602F64EDB0002A3C46 /* TapListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04462F64EDB0002A3C46 /* TapListView.swift */; };
+		517B04612F64EDB0002A3C46 /* BeverageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04482F64EDB0002A3C46 /* BeverageListView.swift */; };
+		517B04622F64EDB0002A3C46 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04492F64EDB0002A3C46 /* ContentView.swift */; };
+		517B04632F64EDB0002A3C46 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B044B2F64EDB0002A3C46 /* Extensions.swift */; };
+		517B04652F64EDB0002A3C46 /* Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B044E2F64EDB0002A3C46 /* Tap.swift */; };
+		517B04662F64EDB0002A3C46 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B044F2F64EDB0002A3C46 /* Beer.swift */; };
+		517B04672F64EDB0002A3C46 /* Airlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04502F64EDB0002A3C46 /* Airlock.swift */; };
+		517B04682F64EDB0002A3C46 /* Keg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04512F64EDB0002A3C46 /* Keg.swift */; };
+		517B04692F64EDB0002A3C46 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04532F64EDB0002A3C46 /* AppState.swift */; };
+		517B046A2F64EDB0002A3C46 /* OpenPlaatoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517B04542F64EDB0002A3C46 /* OpenPlaatoApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		513736F42F64DD370056ECA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 513736DB2F64DD350056ECA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 513736E22F64DD350056ECA1;
+			remoteInfo = OpenPlaato;
+		};
+		513736FE2F64DD380056ECA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 513736DB2F64DD350056ECA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 513736E22F64DD350056ECA1;
+			remoteInfo = OpenPlaato;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		513736E32F64DD350056ECA1 /* OpenPlaato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPlaato.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		513736EA2F64DD370056ECA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		513736F32F64DD370056ECA1 /* OpenPlaatoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPlaatoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		513736F72F64DD370056ECA1 /* OpenPlaatoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPlaatoTests.swift; sourceTree = "<group>"; };
+		513736FD2F64DD370056ECA1 /* OpenPlaatoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPlaatoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		513737012F64DD380056ECA1 /* OpenPlaatoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPlaatoUITests.swift; sourceTree = "<group>"; };
+		513737032F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPlaatoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		517B04372F64EDB0002A3C46 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		517B04382F64EDB0002A3C46 /* WebSocketService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketService.swift; sourceTree = "<group>"; };
+		517B043B2F64EDB0002A3C46 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		517B043D2F64EDB0002A3C46 /* AirlockListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirlockListView.swift; sourceTree = "<group>"; };
+		517B043F2F64EDB0002A3C46 /* KegListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KegListView.swift; sourceTree = "<group>"; };
+		517B04402F64EDB0002A3C46 /* KegDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KegDetailView.swift; sourceTree = "<group>"; };
+		517B04422F64EDB0002A3C46 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		517B04432F64EDB0002A3C46 /* TapEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapEditView.swift; sourceTree = "<group>"; };
+		517B04452F64EDB0002A3C46 /* TapRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapRowView.swift; sourceTree = "<group>"; };
+		517B04462F64EDB0002A3C46 /* TapListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapListView.swift; sourceTree = "<group>"; };
+		517B04482F64EDB0002A3C46 /* BeverageListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeverageListView.swift; sourceTree = "<group>"; };
+		517B04492F64EDB0002A3C46 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		517B044B2F64EDB0002A3C46 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		517B044E2F64EDB0002A3C46 /* Tap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tap.swift; sourceTree = "<group>"; };
+		517B044F2F64EDB0002A3C46 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
+		517B04502F64EDB0002A3C46 /* Airlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Airlock.swift; sourceTree = "<group>"; };
+		517B04512F64EDB0002A3C46 /* Keg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keg.swift; sourceTree = "<group>"; };
+		517B04532F64EDB0002A3C46 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		517B04542F64EDB0002A3C46 /* OpenPlaatoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenPlaatoApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		513736E02F64DD350056ECA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		513736F02F64DD370056ECA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		513736FA2F64DD370056ECA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		513736DA2F64DD350056ECA1 = {
+			isa = PBXGroup;
+			children = (
+				513736E52F64DD350056ECA1 /* OpenPlaato */,
+				513736F62F64DD370056ECA1 /* OpenPlaatoTests */,
+				513737002F64DD380056ECA1 /* OpenPlaatoUITests */,
+				513736E42F64DD350056ECA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		513736E42F64DD350056ECA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				513736E32F64DD350056ECA1 /* OpenPlaato.app */,
+				513736F32F64DD370056ECA1 /* OpenPlaatoTests.xctest */,
+				513736FD2F64DD370056ECA1 /* OpenPlaatoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		513736E52F64DD350056ECA1 /* OpenPlaato */ = {
+			isa = PBXGroup;
+			children = (
+				517B04522F64EDB0002A3C46 /* App */,
+				517B044D2F64EDB0002A3C46 /* Models */,
+				517B04362F64EDB0002A3C46 /* Services */,
+				517B044A2F64EDB0002A3C46 /* Utils */,
+				517B04392F64EDB0002A3C46 /* Views */,
+				513736EA2F64DD370056ECA1 /* Assets.xcassets */,
+			);
+			path = OpenPlaato;
+			sourceTree = "<group>";
+		};
+		513736F62F64DD370056ECA1 /* OpenPlaatoTests */ = {
+			isa = PBXGroup;
+			children = (
+				513736F72F64DD370056ECA1 /* OpenPlaatoTests.swift */,
+			);
+			path = OpenPlaatoTests;
+			sourceTree = "<group>";
+		};
+		513737002F64DD380056ECA1 /* OpenPlaatoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				513737012F64DD380056ECA1 /* OpenPlaatoUITests.swift */,
+				513737032F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift */,
+			);
+			path = OpenPlaatoUITests;
+			sourceTree = "<group>";
+		};
+		517B04362F64EDB0002A3C46 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				517B04372F64EDB0002A3C46 /* APIService.swift */,
+				517B04382F64EDB0002A3C46 /* WebSocketService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		517B04392F64EDB0002A3C46 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				517B043A2F64EDB0002A3C46 /* Settings */,
+				517B043C2F64EDB0002A3C46 /* Airlocks */,
+				517B043E2F64EDB0002A3C46 /* Kegs */,
+				517B04412F64EDB0002A3C46 /* TapEdit */,
+				517B04442F64EDB0002A3C46 /* TapList */,
+				517B04472F64EDB0002A3C46 /* Beverages */,
+				517B04492F64EDB0002A3C46 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		517B043A2F64EDB0002A3C46 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				517B043B2F64EDB0002A3C46 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		517B043C2F64EDB0002A3C46 /* Airlocks */ = {
+			isa = PBXGroup;
+			children = (
+				517B043D2F64EDB0002A3C46 /* AirlockListView.swift */,
+			);
+			path = Airlocks;
+			sourceTree = "<group>";
+		};
+		517B043E2F64EDB0002A3C46 /* Kegs */ = {
+			isa = PBXGroup;
+			children = (
+				517B043F2F64EDB0002A3C46 /* KegListView.swift */,
+				517B04402F64EDB0002A3C46 /* KegDetailView.swift */,
+			);
+			path = Kegs;
+			sourceTree = "<group>";
+		};
+		517B04412F64EDB0002A3C46 /* TapEdit */ = {
+			isa = PBXGroup;
+			children = (
+				517B04422F64EDB0002A3C46 /* ImagePickerView.swift */,
+				517B04432F64EDB0002A3C46 /* TapEditView.swift */,
+			);
+			path = TapEdit;
+			sourceTree = "<group>";
+		};
+		517B04442F64EDB0002A3C46 /* TapList */ = {
+			isa = PBXGroup;
+			children = (
+				517B04452F64EDB0002A3C46 /* TapRowView.swift */,
+				517B04462F64EDB0002A3C46 /* TapListView.swift */,
+			);
+			path = TapList;
+			sourceTree = "<group>";
+		};
+		517B04472F64EDB0002A3C46 /* Beverages */ = {
+			isa = PBXGroup;
+			children = (
+				517B04482F64EDB0002A3C46 /* BeverageListView.swift */,
+			);
+			path = Beverages;
+			sourceTree = "<group>";
+		};
+		517B044A2F64EDB0002A3C46 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				517B044B2F64EDB0002A3C46 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		517B044D2F64EDB0002A3C46 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				517B044E2F64EDB0002A3C46 /* Tap.swift */,
+				517B044F2F64EDB0002A3C46 /* Beer.swift */,
+				517B04502F64EDB0002A3C46 /* Airlock.swift */,
+				517B04512F64EDB0002A3C46 /* Keg.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		517B04522F64EDB0002A3C46 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				517B04532F64EDB0002A3C46 /* AppState.swift */,
+				517B04542F64EDB0002A3C46 /* OpenPlaatoApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		513736E22F64DD350056ECA1 /* OpenPlaato */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 513737072F64DD380056ECA1 /* Build configuration list for PBXNativeTarget "OpenPlaato" */;
+			buildPhases = (
+				513736DF2F64DD350056ECA1 /* Sources */,
+				513736E02F64DD350056ECA1 /* Frameworks */,
+				513736E12F64DD350056ECA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenPlaato;
+			productName = OpenPlaato;
+			productReference = 513736E32F64DD350056ECA1 /* OpenPlaato.app */;
+			productType = "com.apple.product-type.application";
+		};
+		513736F22F64DD370056ECA1 /* OpenPlaatoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5137370A2F64DD380056ECA1 /* Build configuration list for PBXNativeTarget "OpenPlaatoTests" */;
+			buildPhases = (
+				513736EF2F64DD370056ECA1 /* Sources */,
+				513736F02F64DD370056ECA1 /* Frameworks */,
+				513736F12F64DD370056ECA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				513736F52F64DD370056ECA1 /* PBXTargetDependency */,
+			);
+			name = OpenPlaatoTests;
+			productName = OpenPlaatoTests;
+			productReference = 513736F32F64DD370056ECA1 /* OpenPlaatoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		513736FC2F64DD370056ECA1 /* OpenPlaatoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5137370D2F64DD380056ECA1 /* Build configuration list for PBXNativeTarget "OpenPlaatoUITests" */;
+			buildPhases = (
+				513736F92F64DD370056ECA1 /* Sources */,
+				513736FA2F64DD370056ECA1 /* Frameworks */,
+				513736FB2F64DD370056ECA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				513736FF2F64DD380056ECA1 /* PBXTargetDependency */,
+			);
+			name = OpenPlaatoUITests;
+			productName = OpenPlaatoUITests;
+			productReference = 513736FD2F64DD370056ECA1 /* OpenPlaatoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		513736DB2F64DD350056ECA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					513736E22F64DD350056ECA1 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					513736F22F64DD370056ECA1 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 513736E22F64DD350056ECA1;
+					};
+					513736FC2F64DD370056ECA1 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 513736E22F64DD350056ECA1;
+					};
+				};
+			};
+			buildConfigurationList = 513736DE2F64DD350056ECA1 /* Build configuration list for PBXProject "OpenPlaato" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 513736DA2F64DD350056ECA1;
+			productRefGroup = 513736E42F64DD350056ECA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				513736E22F64DD350056ECA1 /* OpenPlaato */,
+				513736F22F64DD370056ECA1 /* OpenPlaatoTests */,
+				513736FC2F64DD370056ECA1 /* OpenPlaatoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		513736E12F64DD350056ECA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				513736EB2F64DD370056ECA1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		513736F12F64DD370056ECA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		513736FB2F64DD370056ECA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		513736DF2F64DD350056ECA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				517B045A2F64EDB0002A3C46 /* AirlockListView.swift in Sources */,
+				517B04592F64EDB0002A3C46 /* SettingsView.swift in Sources */,
+				517B04622F64EDB0002A3C46 /* ContentView.swift in Sources */,
+				517B04692F64EDB0002A3C46 /* AppState.swift in Sources */,
+				517B04602F64EDB0002A3C46 /* TapListView.swift in Sources */,
+				517B045E2F64EDB0002A3C46 /* TapEditView.swift in Sources */,
+				517B04572F64EDB0002A3C46 /* APIService.swift in Sources */,
+				517B04612F64EDB0002A3C46 /* BeverageListView.swift in Sources */,
+				517B04662F64EDB0002A3C46 /* Beer.swift in Sources */,
+				517B045C2F64EDB0002A3C46 /* KegDetailView.swift in Sources */,
+				517B04632F64EDB0002A3C46 /* Extensions.swift in Sources */,
+				517B045D2F64EDB0002A3C46 /* ImagePickerView.swift in Sources */,
+				517B045B2F64EDB0002A3C46 /* KegListView.swift in Sources */,
+				517B04582F64EDB0002A3C46 /* WebSocketService.swift in Sources */,
+				517B046A2F64EDB0002A3C46 /* OpenPlaatoApp.swift in Sources */,
+				517B04672F64EDB0002A3C46 /* Airlock.swift in Sources */,
+				517B045F2F64EDB0002A3C46 /* TapRowView.swift in Sources */,
+				517B04682F64EDB0002A3C46 /* Keg.swift in Sources */,
+				517B04652F64EDB0002A3C46 /* Tap.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		513736EF2F64DD370056ECA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				513736F82F64DD370056ECA1 /* OpenPlaatoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		513736F92F64DD370056ECA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				513737022F64DD380056ECA1 /* OpenPlaatoUITests.swift in Sources */,
+				513737042F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		513736F52F64DD370056ECA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 513736E22F64DD350056ECA1 /* OpenPlaato */;
+			targetProxy = 513736F42F64DD370056ECA1 /* PBXContainerItemProxy */;
+		};
+		513736FF2F64DD380056ECA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 513736E22F64DD350056ECA1 /* OpenPlaato */;
+			targetProxy = 513736FE2F64DD380056ECA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		513737052F64DD380056ECA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		513737062F64DD380056ECA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		513737082F64DD380056ECA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OpenPlaato/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darkjaeger.OpenPlaato;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		513737092F64DD380056ECA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"OpenPlaato/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darkjaeger.OpenPlaato;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5137370B2F64DD380056ECA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darkjaeger.OpenPlaatoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenPlaato.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OpenPlaato";
+			};
+			name = Debug;
+		};
+		5137370C2F64DD380056ECA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darkjaeger.OpenPlaatoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenPlaato.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OpenPlaato";
+			};
+			name = Release;
+		};
+		5137370E2F64DD380056ECA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darkjaeger.OpenPlaatoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OpenPlaato;
+			};
+			name = Debug;
+		};
+		5137370F2F64DD380056ECA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.darkjaeger.OpenPlaatoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OpenPlaato;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		513736DE2F64DD350056ECA1 /* Build configuration list for PBXProject "OpenPlaato" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				513737052F64DD380056ECA1 /* Debug */,
+				513737062F64DD380056ECA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		513737072F64DD380056ECA1 /* Build configuration list for PBXNativeTarget "OpenPlaato" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				513737082F64DD380056ECA1 /* Debug */,
+				513737092F64DD380056ECA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5137370A2F64DD380056ECA1 /* Build configuration list for PBXNativeTarget "OpenPlaatoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5137370B2F64DD380056ECA1 /* Debug */,
+				5137370C2F64DD380056ECA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5137370D2F64DD380056ECA1 /* Build configuration list for PBXNativeTarget "OpenPlaatoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5137370E2F64DD380056ECA1 /* Debug */,
+				5137370F2F64DD380056ECA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 513736DB2F64DD350056ECA1 /* Project object */;
+}
