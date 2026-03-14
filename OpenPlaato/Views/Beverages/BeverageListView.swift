@@ -10,10 +10,10 @@ struct BeverageListView: View {
                 if appState.beers.isEmpty && !appState.isLoading {
                     VStack(spacing: 12) {
                         Image(systemName: "mug.fill")
-                            .font(.system(size: 48)).foregroundColor(.secondary)
+                            .font(.system(size: 48)).foregroundStyle(.secondary)
                         Text("No Beverages").font(.headline)
                         Text("Tap + to add a beverage")
-                            .font(.subheadline).foregroundColor(.secondary)
+                            .font(.subheadline).foregroundStyle(.secondary)
                     }
                 } else {
                     List(appState.beers) { beer in
@@ -22,16 +22,16 @@ struct BeverageListView: View {
                                 Text(beer.name).font(.headline)
                                 HStack {
                                     if let style = beer.style, !style.isEmpty {
-                                        Text(style).font(.subheadline).foregroundColor(.secondary)
+                                        Text(style).font(.subheadline).foregroundStyle(.secondary)
                                     }
                                     Spacer()
                                     if !beer.abvFormatted.isEmpty {
                                         Text(beer.abvFormatted)
-                                            .font(.caption).foregroundColor(.secondary)
+                                            .font(.caption).foregroundStyle(.secondary)
                                     }
                                     if !beer.ibuFormatted.isEmpty {
                                         Text(beer.ibuFormatted)
-                                            .font(.caption).foregroundColor(.secondary)
+                                            .font(.caption).foregroundStyle(.secondary)
                                     }
                                 }
                             }

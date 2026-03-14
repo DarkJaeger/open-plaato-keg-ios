@@ -6,6 +6,7 @@ struct AirlockDetailView: View {
     @State private var labelInput: String = ""
     @State private var isSaving = false
     @State private var alertMsg: String?
+    @State private var showAlert = false
 
     private let api = APIService.shared
 
@@ -21,7 +22,7 @@ struct AirlockDetailView: View {
                 HStack {
                     TextField("Airlock Label", text: $labelInput)
                     Button("Set") {
-                        save {
+                        saveAction {
                             try await api.setAirlockLabel(airlock.id, value: labelInput)
                         }
                     }
@@ -34,8 +35,8 @@ struct AirlockDetailView: View {
         }
         .navigationTitle(airlock.displayName)
         .navigationBarTitleDisplayMode(.inline)
-        .alert("Error", isPresented: .constant(alertMsg != nil)) {
-            Button("OK") { alertMsg = nil }
+        .alert("Error", isPresented: $showAlert) {
+            Button("OK") {}
         } message: { Text(alertMsg ?? "") }
         .onAppear {
             labelInput = airlock.label ?? ""
@@ -70,10 +71,10 @@ struct AirlockDetailView: View {
                 TextField("Specific Gravity", text: $gfSg)
                     .keyboardType(.decimalPad)
                 TextField("Webhook URL", text: $gfUrl)
-                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
                     .keyboardType(.URL)
                 Button("Save Grainfather Settings") {
-                    save {
+                    saveAction {
                         try await api.setGrainfather(airlock.id, body: GrainfatherBody(
                             enabled: gfEnabled, unit: gfUnit, specificGravity: gfSg, url: gfUrl
                         ))
@@ -108,10 +109,10 @@ struct AirlockDetailView: View {
                 TextField("Batch Volume", text: $bfBatchVol)
                     .keyboardType(.decimalPad)
                 TextField("Custom Stream URL", text: $bfUrl)
-                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.never)
                     .keyboardType(.URL)
                 Button("Save Brewfather Settings") {
-                    save {
+                    saveAction {
                         try await api.setBrewfather(airlock.id, body: BrewfatherBody(
                             enabled: bfEnabled, unit: bfUnit, specificGravity: bfSg,
                             url: bfUrl,
@@ -127,7 +128,7 @@ struct AirlockDetailView: View {
 
     // MARK: - Helpers
 
-    private func save(_ action: @escaping () async throws -> Void) {
+    private func saveAction(_ action: @escaping () async throws -> Void) {
         isSaving = true
         Task {
             do {
@@ -135,6 +136,7 @@ struct AirlockDetailView: View {
                 await reloadAirlock()
             } catch {
                 alertMsg = error.localizedDescription
+                showAlert = true
             }
             isSaving = false
         }

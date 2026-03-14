@@ -7,6 +7,7 @@ struct BrewfatherBatchListView: View {
     @State private var errorMsg: String?
     @State private var importingId: String?
     @State private var importSuccess: String?
+    @State private var showImportSuccess = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -17,19 +18,19 @@ struct BrewfatherBatchListView: View {
                 } else if let err = errorMsg {
                     VStack(spacing: 12) {
                         Image(systemName: "exclamationmark.triangle")
-                            .font(.system(size: 48)).foregroundColor(.orange)
+                            .font(.system(size: 48)).foregroundStyle(.orange)
                         Text("Failed to load batches").font(.headline)
-                        Text(err).font(.subheadline).foregroundColor(.secondary)
+                        Text(err).font(.subheadline).foregroundStyle(.secondary)
                             .multilineTextAlignment(.center).padding(.horizontal)
                         Button("Retry") { loadBatches() }
                     }
                 } else if batches.isEmpty {
                     VStack(spacing: 12) {
                         Image(systemName: "tray")
-                            .font(.system(size: 48)).foregroundColor(.secondary)
+                            .font(.system(size: 48)).foregroundStyle(.secondary)
                         Text("No Batches").font(.headline)
                         Text("No batches found in your Brewfather account")
-                            .font(.subheadline).foregroundColor(.secondary)
+                            .font(.subheadline).foregroundStyle(.secondary)
                     }
                 } else {
                     List(batches) { batch in
@@ -38,10 +39,10 @@ struct BrewfatherBatchListView: View {
                                 Text(batch.name).font(.headline)
                                 HStack {
                                     Text(batch.style)
-                                        .font(.subheadline).foregroundColor(.secondary)
+                                        .font(.subheadline).foregroundStyle(.secondary)
                                     if let abv = batch.abv {
                                         Text(String(format: "%.1f%% ABV", abv))
-                                            .font(.caption).foregroundColor(.secondary)
+                                            .font(.caption).foregroundStyle(.secondary)
                                     }
                                 }
                                 Text(batch.status.capitalized)
@@ -73,8 +74,8 @@ struct BrewfatherBatchListView: View {
                     Button("Done") { dismiss() }
                 }
             }
-            .alert("Imported", isPresented: .constant(importSuccess != nil)) {
-                Button("OK") { importSuccess = nil }
+            .alert("Imported", isPresented: $showImportSuccess) {
+                Button("OK") {}
             } message: { Text(importSuccess ?? "") }
             .task { loadBatches() }
         }
@@ -100,6 +101,7 @@ struct BrewfatherBatchListView: View {
                 try await APIService.shared.importBrewfatherBatch(id)
                 await appState.loadAll()
                 importSuccess = "Batch imported as beverage successfully."
+                showImportSuccess = true
             } catch {
                 errorMsg = error.localizedDescription
             }

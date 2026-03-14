@@ -14,7 +14,7 @@ struct KegListView: View {
                             Spacer()
                             Label(keg.tempFormatted, systemImage: "thermometer")
                         }
-                        .font(.subheadline).foregroundColor(.secondary)
+                        .font(.subheadline).foregroundStyle(.secondary)
                     }
                     .padding(.vertical, 2)
                 }

@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var isSavingBF = false
     @State private var showBatches = false
     @State private var alertMsg: String?
+    @State private var showAlert = false
     @State private var configLoaded = false
 
     var body: some View {
@@ -21,7 +22,7 @@ struct SettingsView: View {
             Form {
                 Section("Server") {
                     TextField("Server URL", text: $serverURL)
-                        .autocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                         .keyboardType(.URL)
                     Button("Reconnect") {
                         WebSocketService.shared.disconnect()
@@ -32,21 +33,24 @@ struct SettingsView: View {
 
                 Section("Notifications") {
                     Toggle("Pour Notifications", isOn: $pourNotificationsEnabled)
-                        .onChange(of: pourNotificationsEnabled) { enabled in
-                            if enabled { requestNotificationPermission() }
+                        .onChange(of: pourNotificationsEnabled) {
+                            if pourNotificationsEnabled { requestNotificationPermission() }
                         }
                     Toggle("Keg Running Low", isOn: $notificationsEnabled)
-                        .onChange(of: notificationsEnabled) { enabled in
-                            if enabled { requestNotificationPermission() }
+                        .onChange(of: notificationsEnabled) {
+                            if notificationsEnabled { requestNotificationPermission() }
                         }
                 }
 
                 Section("App Config") {
                     Toggle("Airlock Support", isOn: $airlockEnabled)
-                        .onChange(of: airlockEnabled) { enabled in
+                        .onChange(of: airlockEnabled) {
                             Task {
-                                do { try await APIService.shared.setAirlockEnabled(enabled) }
-                                catch { alertMsg = error.localizedDescription }
+                                do { try await APIService.shared.setAirlockEnabled(airlockEnabled) }
+                                catch {
+                                    alertMsg = error.localizedDescription
+                                    showAlert = true
+                                }
                             }
                         }
                 }
@@ -54,10 +58,10 @@ struct SettingsView: View {
                 Section("Brewfather") {
                     if brewfatherConfigured {
                         Label("Credentials configured", systemImage: "checkmark.circle.fill")
-                            .foregroundColor(.green)
+                            .foregroundStyle(.green)
                     }
                     TextField("User ID", text: $bfUserId)
-                        .autocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                     SecureField("API Key", text: $bfApiKey)
                     Button(isSavingBF ? "Saving..." : "Save Credentials") {
                         saveBrewfatherCreds()
@@ -81,8 +85,8 @@ struct SettingsView: View {
                 BrewfatherBatchListView()
                     .environmentObject(appState)
             }
-            .alert("Error", isPresented: .constant(alertMsg != nil)) {
-                Button("OK") { alertMsg = nil }
+            .alert("Error", isPresented: $showAlert) {
+                Button("OK") {}
             } message: { Text(alertMsg ?? "") }
         }
     }
@@ -110,6 +114,7 @@ struct SettingsView: View {
                 brewfatherConfigured = true
             } catch {
                 alertMsg = error.localizedDescription
+                showAlert = true
             }
             isSavingBF = false
         }

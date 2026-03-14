@@ -13,10 +13,10 @@ struct TapListView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "drop.fill")
                             .font(.system(size: 48))
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                         Text("No Taps").font(.headline)
                         Text("Tap + to create a tap")
-                            .font(.subheadline).foregroundColor(.secondary)
+                            .font(.subheadline).foregroundStyle(.secondary)
                     }
                 } else {
                     List(appState.taps) { tap in

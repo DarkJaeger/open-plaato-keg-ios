@@ -8,6 +8,7 @@ struct TapEditView: View {
     @State private var showTapHandlePicker = false
     @State private var isSaving = false
     @State private var saveError: String?
+    @State private var showSaveError = false
     @State private var showDeleteConfirm = false
     @Environment(\.dismiss) private var dismiss
 
@@ -28,9 +29,9 @@ struct TapEditView: View {
             Section("Tap Info") {
                 TextField("Name", text: $name)
                 TextField("Device ID (6 chars max)", text: $deviceId)
-                    .autocapitalization(.none)
-                    .onChange(of: deviceId) { val in
-                        if val.count > 6 { deviceId = String(val.prefix(6)) }
+                    .textInputAutocapitalization(.never)
+                    .onChange(of: deviceId) {
+                        if deviceId.count > 6 { deviceId = String(deviceId.prefix(6)) }
                     }
                 Picker("Keg", selection: $kegId) {
                     Text("None").tag(String?.none)
@@ -95,8 +96,8 @@ struct TapEditView: View {
         .sheet(isPresented: $showTapHandlePicker) {
             TapHandlePickerView(selectedFilename: $handleImage)
         }
-        .alert("Save Failed", isPresented: .constant(saveError != nil)) {
-            Button("OK") { saveError = nil }
+        .alert("Save Failed", isPresented: $showSaveError) {
+            Button("OK") {}
         } message: { Text(saveError ?? "") }
         .confirmationDialog("Delete Tap?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
             Button("Delete", role: .destructive) { deleteTap() }
@@ -112,7 +113,7 @@ struct TapEditView: View {
     private var beverageAutoFillSection: some View {
         Section("Auto-fill from Beverage") {
             if appState.beers.isEmpty {
-                Text("No beverages available").foregroundColor(.secondary)
+                Text("No beverages available").foregroundStyle(.secondary)
             } else {
                 ForEach(appState.beers) { beer in
                     Button {
@@ -120,14 +121,14 @@ struct TapEditView: View {
                     } label: {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(beer.name).foregroundColor(.primary)
+                                Text(beer.name).foregroundStyle(.primary)
                                 if let s = beer.style, !s.isEmpty {
-                                    Text(s).font(.caption).foregroundColor(.secondary)
+                                    Text(s).font(.caption).foregroundStyle(.secondary)
                                 }
                             }
                             Spacer()
                             Image(systemName: "arrow.down.doc")
-                                .foregroundColor(.accentColor)
+                                .foregroundStyle(Color.accentColor)
                         }
                     }
                 }
@@ -208,6 +209,7 @@ struct TapEditView: View {
                 dismiss()
             } catch {
                 saveError = error.localizedDescription
+                showSaveError = true
             }
             isSaving = false
         }
@@ -221,6 +223,7 @@ struct TapEditView: View {
                 dismiss()
             } catch {
                 saveError = error.localizedDescription
+                showSaveError = true
             }
         }
     }
