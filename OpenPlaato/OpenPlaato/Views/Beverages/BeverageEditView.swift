@@ -16,6 +16,7 @@ struct BeverageEditView: View {
     @State private var tastingNotes: String = ""
     @State private var isSaving = false
     @State private var saveError: String?
+    @State private var showSaveError = false
     @State private var showDeleteConfirm = false
     @Environment(\.dismiss) private var dismiss
 
@@ -44,10 +45,8 @@ struct BeverageEditView: View {
             }
 
             Section("Details") {
-                TextField("Description", text: $beerDescription, axis: .vertical)
-                    .lineLimit(3...6)
-                TextField("Tasting Notes", text: $tastingNotes, axis: .vertical)
-                    .lineLimit(2...4)
+                TextField("Description", text: $beerDescription)
+                TextField("Tasting Notes", text: $tastingNotes)
             }
 
             Section {
@@ -63,8 +62,8 @@ struct BeverageEditView: View {
                 Button("Save") { save() }.disabled(isSaving || name.isEmpty)
             }
         }
-        .alert("Save Failed", isPresented: .constant(saveError != nil)) {
-            Button("OK") { saveError = nil }
+        .alert("Save Failed", isPresented: $showSaveError) {
+            Button("OK") {}
         } message: { Text(saveError ?? "") }
         .confirmationDialog("Delete Beverage?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
             Button("Delete", role: .destructive) { deleteBeverage() }
@@ -111,6 +110,7 @@ struct BeverageEditView: View {
                 dismiss()
             } catch {
                 saveError = error.localizedDescription
+                showSaveError = true
             }
             isSaving = false
         }
@@ -124,6 +124,7 @@ struct BeverageEditView: View {
                 dismiss()
             } catch {
                 saveError = error.localizedDescription
+                showSaveError = true
             }
         }
     }

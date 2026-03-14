@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var isSavingBF = false
     @State private var showBatches = false
     @State private var alertMsg: String?
+    @State private var showAlert = false
     @State private var configLoaded = false
 
     var body: some View {
@@ -46,7 +47,10 @@ struct SettingsView: View {
                         .onChange(of: airlockEnabled) { enabled in
                             Task {
                                 do { try await APIService.shared.setAirlockEnabled(enabled) }
-                                catch { alertMsg = error.localizedDescription }
+                                catch {
+                                    alertMsg = error.localizedDescription
+                                    showAlert = true
+                                }
                             }
                         }
                 }
@@ -81,8 +85,8 @@ struct SettingsView: View {
                 BrewfatherBatchListView()
                     .environmentObject(appState)
             }
-            .alert("Error", isPresented: .constant(alertMsg != nil)) {
-                Button("OK") { alertMsg = nil }
+            .alert("Error", isPresented: $showAlert) {
+                Button("OK") {}
             } message: { Text(alertMsg ?? "") }
         }
     }
@@ -110,6 +114,7 @@ struct SettingsView: View {
                 brewfatherConfigured = true
             } catch {
                 alertMsg = error.localizedDescription
+                showAlert = true
             }
             isSavingBF = false
         }

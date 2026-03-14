@@ -7,6 +7,7 @@ struct BrewfatherBatchListView: View {
     @State private var errorMsg: String?
     @State private var importingId: String?
     @State private var importSuccess: String?
+    @State private var showImportSuccess = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -73,8 +74,8 @@ struct BrewfatherBatchListView: View {
                     Button("Done") { dismiss() }
                 }
             }
-            .alert("Imported", isPresented: .constant(importSuccess != nil)) {
-                Button("OK") { importSuccess = nil }
+            .alert("Imported", isPresented: $showImportSuccess) {
+                Button("OK") {}
             } message: { Text(importSuccess ?? "") }
             .task { loadBatches() }
         }
@@ -100,6 +101,7 @@ struct BrewfatherBatchListView: View {
                 try await APIService.shared.importBrewfatherBatch(id)
                 await appState.loadAll()
                 importSuccess = "Batch imported as beverage successfully."
+                showImportSuccess = true
             } catch {
                 errorMsg = error.localizedDescription
             }

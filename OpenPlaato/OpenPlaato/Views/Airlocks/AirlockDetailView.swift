@@ -6,6 +6,7 @@ struct AirlockDetailView: View {
     @State private var labelInput: String = ""
     @State private var isSaving = false
     @State private var alertMsg: String?
+    @State private var showAlert = false
 
     private let api = APIService.shared
 
@@ -34,8 +35,8 @@ struct AirlockDetailView: View {
         }
         .navigationTitle(airlock.displayName)
         .navigationBarTitleDisplayMode(.inline)
-        .alert("Error", isPresented: .constant(alertMsg != nil)) {
-            Button("OK") { alertMsg = nil }
+        .alert("Error", isPresented: $showAlert) {
+            Button("OK") {}
         } message: { Text(alertMsg ?? "") }
         .onAppear {
             labelInput = airlock.label ?? ""
@@ -135,6 +136,7 @@ struct AirlockDetailView: View {
                 await reloadAirlock()
             } catch {
                 alertMsg = error.localizedDescription
+                showAlert = true
             }
             isSaving = false
         }

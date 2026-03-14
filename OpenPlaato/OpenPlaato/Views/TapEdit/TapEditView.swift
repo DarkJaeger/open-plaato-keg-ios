@@ -8,6 +8,7 @@ struct TapEditView: View {
     @State private var showTapHandlePicker = false
     @State private var isSaving = false
     @State private var saveError: String?
+    @State private var showSaveError = false
     @State private var showDeleteConfirm = false
     @Environment(\.dismiss) private var dismiss
 
@@ -47,10 +48,8 @@ struct TapEditView: View {
                     TextField("ABV", text: $abv).keyboardType(.decimalPad)
                     TextField("IBU", text: $ibu).keyboardType(.decimalPad)
                 }
-                TextField("Description", text: $beerDescription, axis: .vertical)
-                    .lineLimit(3...6)
-                TextField("Tasting Notes", text: $tastingNotes, axis: .vertical)
-                    .lineLimit(2...4)
+                TextField("Description", text: $beerDescription)
+                TextField("Tasting Notes", text: $tastingNotes)
             }
 
             Section("Color") {
@@ -95,8 +94,8 @@ struct TapEditView: View {
         .sheet(isPresented: $showTapHandlePicker) {
             TapHandlePickerView(selectedFilename: $handleImage)
         }
-        .alert("Save Failed", isPresented: .constant(saveError != nil)) {
-            Button("OK") { saveError = nil }
+        .alert("Save Failed", isPresented: $showSaveError) {
+            Button("OK") {}
         } message: { Text(saveError ?? "") }
         .confirmationDialog("Delete Tap?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
             Button("Delete", role: .destructive) { deleteTap() }
@@ -208,6 +207,7 @@ struct TapEditView: View {
                 dismiss()
             } catch {
                 saveError = error.localizedDescription
+                showSaveError = true
             }
             isSaving = false
         }
@@ -221,6 +221,7 @@ struct TapEditView: View {
                 dismiss()
             } catch {
                 saveError = error.localizedDescription
+                showSaveError = true
             }
         }
     }
