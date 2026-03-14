@@ -28,17 +28,29 @@ struct TapEditView: View {
         Form {
             Section("Tap Info") {
                 TextField("Name", text: $name)
-                TextField("Device ID (6 chars max)", text: $deviceId)
-                    .autocapitalization(.none)
-                    .onChange(of: deviceId) { val in
-                        if val.count > 6 { deviceId = String(val.prefix(6)) }
-                    }
                 Picker("Keg", selection: $kegId) {
                     Text("None").tag(String?.none)
                     ForEach(appState.kegs) { keg in
                         Text(keg.name).tag(Optional(keg.id))
                     }
                 }
+            }
+
+            Section {
+                TextField("e.g. tap1", text: $deviceId)
+                    .autocapitalization(.none)
+                    .onChange(of: deviceId) { val in
+                        if val.count > 6 { deviceId = String(val.prefix(6)) }
+                    }
+                if !deviceId.isEmpty {
+                    Text("Enter **\(deviceId)** as the Keg ID in your open-tap WiFi setup screen.")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            } header: {
+                Text("Open-Tap Device ID (max 6 chars)")
+            } footer: {
+                Text("If you use an open-tap ESP32 display, enter the Keg ID you configured in the device here. The device will call GET /get_keg/\(deviceId.isEmpty ? "{id}" : deviceId) every 10s.")
             }
 
             Section("Beer Details") {
