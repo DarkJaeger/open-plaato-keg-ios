@@ -26,8 +26,16 @@ struct AirlockListView: View {
             .navigationTitle("Airlocks")
             .overlay {
                 if appState.airlocks.isEmpty && !appState.isLoading {
-                    ContentUnavailableView("No Airlocks", systemImage: "wind",
-                                          description: Text("No PLAATO airlocks found"))
+                    VStack(spacing: 12) {
+                        Image(systemName: "wind")
+                            .font(.system(size: 48))
+                            .foregroundColor(.secondary)
+                        Text("No Airlocks")
+                            .font(.headline)
+                        Text("No PLAATO airlocks found")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
         }

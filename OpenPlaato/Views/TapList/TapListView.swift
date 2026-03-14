@@ -10,8 +10,14 @@ struct TapListView: View {
                 if appState.isLoading && appState.taps.isEmpty {
                     ProgressView("Loading taps...")
                 } else if appState.taps.isEmpty {
-                    ContentUnavailableView("No Taps", systemImage: "drop.fill",
-                                          description: Text("Add taps via the web UI"))
+                    VStack(spacing: 12) {
+                        Image(systemName: "drop.fill")
+                            .font(.system(size: 48))
+                            .foregroundColor(.secondary)
+                        Text("No Taps").font(.headline)
+                        Text("Add taps via the web UI")
+                            .font(.subheadline).foregroundColor(.secondary)
+                    }
                 } else {
                     List(appState.taps) { tap in
                         NavigationLink(destination: TapEditView(tap: tap)) {
