@@ -6,21 +6,20 @@ struct AirlockListView: View {
     var body: some View {
         NavigationStack {
             List(appState.airlocks) { airlock in
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(airlock.name ?? airlock.deviceId).font(.headline)
-                    HStack {
-                        Label(airlock.gravityFormatted, systemImage: "scalemass.fill")
-                        Spacer()
-                        Label(airlock.tempFormatted, systemImage: "thermometer")
-                        if let bat = airlock.battery {
+                NavigationLink(destination: AirlockDetailView(airlock: airlock)) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(airlock.displayName).font(.headline)
+                        HStack {
+                            Label(airlock.gravityFormatted, systemImage: "scalemass.fill")
                             Spacer()
-                            Label("\(bat)%", systemImage: bat > 20 ? "battery.75" : "battery.25")
-                                .foregroundColor(bat > 20 ? .primary : .red)
+                            Label(airlock.tempFormatted, systemImage: "thermometer")
+                            Spacer()
+                            Label(airlock.bubblesFormatted, systemImage: "bubble.left.fill")
                         }
+                        .font(.subheadline).foregroundColor(.secondary)
                     }
-                    .font(.subheadline).foregroundColor(.secondary)
+                    .padding(.vertical, 2)
                 }
-                .padding(.vertical, 2)
             }
             .refreshable { await appState.loadAll() }
             .navigationTitle("Airlocks")

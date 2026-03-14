@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TapListView: View {
     @EnvironmentObject var appState: AppState
-    @State private var selectedTap: Tap?
+    @State private var showCreateTap = false
 
     var body: some View {
         NavigationStack {
@@ -15,7 +15,7 @@ struct TapListView: View {
                             .font(.system(size: 48))
                             .foregroundColor(.secondary)
                         Text("No Taps").font(.headline)
-                        Text("Add taps via the web UI")
+                        Text("Tap + to create a tap")
                             .font(.subheadline).foregroundColor(.secondary)
                     }
                 } else {
@@ -34,10 +34,29 @@ struct TapListView: View {
             .navigationTitle("Taps")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { Task { await appState.loadAll() } } label: {
-                        Image(systemName: "arrow.clockwise")
+                    HStack(spacing: 16) {
+                        Button { Task { await appState.loadAll() } } label: {
+                            Image(systemName: "arrow.clockwise")
+                        }
+                        Button { showCreateTap = true } label: {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
+            }
+            .sheet(isPresented: $showCreateTap) {
+                NavigationStack {
+                    TapEditView(tap: Tap(
+                        id: UUID().uuidString.lowercased().replacingOccurrences(of: "-", with: ""),
+                        name: "New Tap"
+                    ))
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Cancel") { showCreateTap = false }
+                        }
+                    }
+                }
+                .environmentObject(appState)
             }
             .alert("Error", isPresented: .constant(appState.errorMessage != nil)) {
                 Button("OK") { appState.errorMessage = nil }

@@ -19,6 +19,14 @@ class AppState: ObservableObject {
                 self.kegs[idx] = updatedKeg
             }
         }
+        ws.onAirlockUpdate = { [weak self] updatedAirlock in
+            guard let self else { return }
+            if let idx = self.airlocks.firstIndex(where: { $0.id == updatedAirlock.id }) {
+                self.airlocks[idx] = updatedAirlock
+            } else {
+                self.airlocks.append(updatedAirlock)
+            }
+        }
         ws.connect()
     }
 
@@ -39,5 +47,10 @@ class AppState: ObservableObject {
     func keg(for tap: Tap) -> Keg? {
         guard let id = tap.kegId else { return nil }
         return kegs.first { $0.id == id }
+    }
+
+    func beer(for keg: Keg) -> Beer? {
+        guard let style = keg.myBeerStyle, !style.isEmpty else { return nil }
+        return beers.first { $0.name.localizedCaseInsensitiveCompare(style) == .orderedSame }
     }
 }

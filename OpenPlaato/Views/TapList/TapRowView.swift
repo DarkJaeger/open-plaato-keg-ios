@@ -3,10 +3,10 @@ import SwiftUI
 struct TapRowView: View {
     let tap: Tap
     let keg: Keg?
+    let beer: Beer?
 
     var body: some View {
         HStack(spacing: 12) {
-            // Handle image or placeholder
             Group {
                 if let url = tap.handleImageUrl, let imageURL = URL(string: url) {
                     AsyncImage(url: imageURL) { image in
@@ -27,8 +27,10 @@ struct TapRowView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(tap.name).font(.headline)
-                if let style = tap.style, !style.isEmpty {
+                if let style = beer?.style ?? tap.style, !style.isEmpty {
                     Text(style).font(.subheadline).foregroundColor(.secondary)
+                } else if keg != nil {
+                    Text(keg?.myBeerStyle ?? "").font(.subheadline).foregroundColor(.secondary)
                 } else {
                     Text("No keg assigned").font(.subheadline).foregroundColor(.secondary)
                 }
@@ -40,7 +42,7 @@ struct TapRowView: View {
                 VStack(alignment: .trailing, spacing: 4) {
                     if keg.isPouringBool {
                         Label("Pouring", systemImage: "drop.fill")
-                            .font(.caption).foregroundColor(.blue)
+                            .font(.caption).foregroundColor(.pouringGreen)
                     }
                     Text(keg.percentFormatted)
                         .font(.title3).bold()
