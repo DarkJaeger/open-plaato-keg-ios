@@ -18,8 +18,8 @@ struct TapHandlePickerView: View {
                 } else if handles.isEmpty {
                     VStack(spacing: 12) {
                         Image(systemName: "photo.on.rectangle.angled")
-                            .font(.system(size: 48)).foregroundColor(.secondary)
-                        Text("No tap handles on server").foregroundColor(.secondary)
+                            .font(.system(size: 48)).foregroundStyle(.secondary)
+                        Text("No tap handles on server").foregroundStyle(.secondary)
                     }
                 } else {
                     ScrollView {
@@ -51,7 +51,7 @@ struct TapHandlePickerView: View {
             .navigationTitle("Tap Handles")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") { dismiss() }
                 }
             }
