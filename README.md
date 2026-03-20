@@ -3,7 +3,7 @@
 SwiftUI companion app for [open-plaato-keg](https://github.com/DarkJaeger/open-plaato-keg).
 
 ## Requirements
-- Xcode 14.2+ (macOS 12 Monterey compatible)
+- Xcode 16.4+ (macOS 15 Sequoia compatible)
 - iOS 16+
 - open-plaato-keg server running on local network
 
