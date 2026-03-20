@@ -42,7 +42,7 @@ struct TapRowView: View {
                 VStack(alignment: .trailing, spacing: 4) {
                     if keg.isPouringBool {
                         Label("Pouring", systemImage: "drop.fill")
-                            .font(.caption).foregroundStyle(.pouringGreen)
+                            .font(.caption).foregroundStyle(Color.pouringGreen)
                     }
                     Text(keg.percentFormatted)
                         .font(.title3).bold()
