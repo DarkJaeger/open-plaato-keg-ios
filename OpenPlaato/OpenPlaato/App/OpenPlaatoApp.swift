@@ -18,10 +18,11 @@ struct OpenPlaatoApp: App {
     }
 
     private func configureAppearance() {
-        let amber = UIColor(red: 0xF5/255, green: 0x9E/255, blue: 0x0B/255, alpha: 1)
-        let darkBg = UIColor(red: 0x0F/255, green: 0x0F/255, blue: 0x0F/255, alpha: 1)
-        let surface = UIColor(red: 0x1A/255, green: 0x1A/255, blue: 0x1A/255, alpha: 1)
-        let onSurface = UIColor(red: 0xE5/255, green: 0xE5/255, blue: 0xE5/255, alpha: 1)
+        let amber = UIColor(red: 245.0/255, green: 158.0/255, blue: 11.0/255, alpha: 1)
+        let darkBg = UIColor(red: 15.0/255, green: 15.0/255, blue: 15.0/255, alpha: 1)
+        let surface = UIColor(red: 26.0/255, green: 26.0/255, blue: 26.0/255, alpha: 1)
+        let onSurface = UIColor(red: 229.0/255, green: 229.0/255, blue: 229.0/255, alpha: 1)
+        let muted = UIColor(red: 156.0/255, green: 163.0/255, blue: 175.0/255, alpha: 1)
 
         // Navigation bar
         let navAppearance = UINavigationBarAppearance()
@@ -38,17 +39,17 @@ struct OpenPlaatoApp: App {
         let tabAppearance = UITabBarAppearance()
         tabAppearance.configureWithOpaqueBackground()
         tabAppearance.backgroundColor = darkBg
-        let normalAttrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 0x9C/255, green: 0xA3/255, blue: 0xAF/255, alpha: 1)]
+        let normalAttrs: [NSAttributedString.Key: Any] = [.foregroundColor: muted]
         let selectedAttrs: [NSAttributedString.Key: Any] = [.foregroundColor: amber]
         tabAppearance.stackedLayoutAppearance.normal.titleTextAttributes = normalAttrs
-        tabAppearance.stackedLayoutAppearance.normal.iconColor = UIColor(red: 0x9C/255, green: 0xA3/255, blue: 0xAF/255, alpha: 1)
+        tabAppearance.stackedLayoutAppearance.normal.iconColor = muted
         tabAppearance.stackedLayoutAppearance.selected.titleTextAttributes = selectedAttrs
         tabAppearance.stackedLayoutAppearance.selected.iconColor = amber
         UITabBar.appearance().standardAppearance = tabAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabAppearance
 
         // Table/List background
-        UITableView.appearance().backgroundColor = UIColor(red: 0x0F/255, green: 0x0F/255, blue: 0x0F/255, alpha: 1)
+        UITableView.appearance().backgroundColor = darkBg
         UITableViewCell.appearance().backgroundColor = surface
     }
 }

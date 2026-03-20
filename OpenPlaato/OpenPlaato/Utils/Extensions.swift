@@ -4,24 +4,24 @@ import SwiftUI
 
 extension Color {
     // Amber brand
-    static let amber400 = Color(red: 0xFB/255, green: 0xBF/255, blue: 0x24/255)  // #FBBF24
-    static let amber500 = Color(red: 0xF5/255, green: 0x9E/255, blue: 0x0B/255)  // #F59E0B
-    static let amber600 = Color(red: 0xD9/255, green: 0x77/255, blue: 0x06/255)  // #D97706
-    static let amberDark = Color(red: 0x92/255, green: 0x40/255, blue: 0x0E/255) // #92400E
+    static let amber400 = Color(red: 251.0/255, green: 191.0/255, blue: 36.0/255)   // #FBBF24
+    static let amber500 = Color(red: 245.0/255, green: 158.0/255, blue: 11.0/255)   // #F59E0B
+    static let amber600 = Color(red: 217.0/255, green: 119.0/255, blue: 6.0/255)    // #D97706
+    static let amberDark = Color(red: 146.0/255, green: 64.0/255, blue: 14.0/255)   // #92400E
 
     // Dark surfaces (matching Android)
-    static let darkBackground   = Color(red: 0x0F/255, green: 0x0F/255, blue: 0x0F/255) // #0F0F0F
-    static let darkSurface      = Color(red: 0x1A/255, green: 0x1A/255, blue: 0x1A/255) // #1A1A1A
-    static let darkSurfaceVar   = Color(red: 0x24/255, green: 0x24/255, blue: 0x24/255) // #242424
-    static let darkCard         = Color(red: 0x1E/255, green: 0x1E/255, blue: 0x1E/255) // #1E1E1E
-    static let darkDivider      = Color(red: 0x2A/255, green: 0x2A/255, blue: 0x2A/255) // #2A2A2A
-    static let onBackground     = Color(red: 0xF5/255, green: 0xF5/255, blue: 0xF5/255) // #F5F5F5
-    static let onSurface        = Color(red: 0xE5/255, green: 0xE5/255, blue: 0xE5/255) // #E5E5E5
-    static let onSurfaceMuted   = Color(red: 0x9C/255, green: 0xA3/255, blue: 0xAF/255) // #9CA3AF
+    static let darkBackground   = Color(red: 15.0/255, green: 15.0/255, blue: 15.0/255)   // #0F0F0F
+    static let darkSurface      = Color(red: 26.0/255, green: 26.0/255, blue: 26.0/255)   // #1A1A1A
+    static let darkSurfaceVar   = Color(red: 36.0/255, green: 36.0/255, blue: 36.0/255)   // #242424
+    static let darkCard         = Color(red: 30.0/255, green: 30.0/255, blue: 30.0/255)   // #1E1E1E
+    static let darkDivider      = Color(red: 42.0/255, green: 42.0/255, blue: 42.0/255)   // #2A2A2A
+    static let onBackground     = Color(red: 245.0/255, green: 245.0/255, blue: 245.0/255) // #F5F5F5
+    static let onSurface        = Color(red: 229.0/255, green: 229.0/255, blue: 229.0/255) // #E5E5E5
+    static let onSurfaceMuted   = Color(red: 156.0/255, green: 163.0/255, blue: 175.0/255) // #9CA3AF
 
     // Status colors
-    static let pouringGreen = Color(red: 0x22/255, green: 0xC5/255, blue: 0x5E/255) // #22C55E
-    static let lowRed = Color(red: 0xEF/255, green: 0x44/255, blue: 0x44/255)       // #EF4444
+    static let pouringGreen = Color(red: 34.0/255, green: 197.0/255, blue: 94.0/255)  // #22C55E
+    static let lowRed = Color(red: 239.0/255, green: 68.0/255, blue: 68.0/255)        // #EF4444
 
     static let kegGreen  = pouringGreen
     static let kegOrange = amber500
