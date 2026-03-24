@@ -1,0 +1,33 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload to TestFlight"
+  lane :beta do
+    sh("git pull origin main")
+    match(type: "appstore", readonly: true)
+    increment_build_number(
+      xcodeproj: "OpenPlaato.xcodeproj"
+    )
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "OpenPlaato.xcodeproj",
+      team_id: "MB8QC9A9W3",
+      code_sign_identity: "Apple Distribution",
+      profile_name: "match AppStore com.darkjaeger.OpenPlaato"
+    )
+    build_app(
+      scheme: "OpenPlaato",
+      project: "OpenPlaato.xcodeproj",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.darkjaeger.OpenPlaato" => "match AppStore com.darkjaeger.OpenPlaato"
+        }
+      }
+    )
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+end

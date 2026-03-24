@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.00057">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: git pull origin main" time="1.219337">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: match" time="6.251217">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: increment_build_number" time="8.793467">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: update_code_signing_settings" time="0.42992">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: build_app" time="72.414778">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: upload_to_testflight" time="42.838502">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
