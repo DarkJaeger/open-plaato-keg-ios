@@ -1,3 +1,4 @@
+<a href="https://www.buymeacoffee.com/LocutusOFB"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 # open-plaato-keg-ios
 
 SwiftUI companion app for [open-plaato-keg](https://github.com/DarkJaeger/open-plaato-keg).
