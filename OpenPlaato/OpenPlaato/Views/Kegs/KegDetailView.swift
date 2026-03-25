@@ -61,7 +61,7 @@ struct KegDetailView: View {
         .navigationTitle(keg.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: KegConfigView(keg: keg)) {
                     Image(systemName: "gearshape")
                 }

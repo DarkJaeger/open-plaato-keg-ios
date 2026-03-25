@@ -17,7 +17,7 @@ struct TapRowView: View {
                 } else {
                     Image(systemName: "drop.fill")
                         .font(.title2)
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundColor(.accentColor)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.accentColor.opacity(0.1))
                 }
@@ -28,11 +28,11 @@ struct TapRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(tap.name).font(.headline)
                 if let style = beer?.style ?? tap.style, !style.isEmpty {
-                    Text(style).font(.subheadline).foregroundStyle(.secondary)
+                    Text(style).font(.subheadline).foregroundColor(.secondary)
                 } else if keg != nil {
-                    Text(keg?.myBeerStyle ?? "").font(.subheadline).foregroundStyle(.secondary)
+                    Text(keg?.myBeerStyle ?? "").font(.subheadline).foregroundColor(.secondary)
                 } else {
-                    Text("No keg assigned").font(.subheadline).foregroundStyle(.secondary)
+                    Text("No keg assigned").font(.subheadline).foregroundColor(.secondary)
                 }
             }
 
@@ -42,13 +42,13 @@ struct TapRowView: View {
                 VStack(alignment: .trailing, spacing: 4) {
                     if keg.isPouringBool {
                         Label("Pouring", systemImage: "drop.fill")
-                            .font(.caption).foregroundStyle(Color.pouringGreen)
+                            .font(.caption).foregroundColor(Color.pouringGreen)
                     }
                     Text(keg.percentFormatted)
                         .font(.title3).bold()
-                        .foregroundStyle(Color.forPercent(keg.percentDouble))
+                        .foregroundColor(Color.forPercent(keg.percentDouble))
                     Text(keg.tempFormatted)
-                        .font(.caption).foregroundStyle(.secondary)
+                        .font(.caption).foregroundColor(.secondary)
                 }
             }
         }

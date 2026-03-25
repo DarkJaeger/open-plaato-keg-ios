@@ -20,7 +20,7 @@ struct KegListView: View {
                                 Spacer()
                                 Label(keg.tempFormatted, systemImage: "thermometer")
                             }
-                            .font(.subheadline).foregroundStyle(.secondary)
+                            .font(.subheadline).foregroundColor(.secondary)
                         }
                         .padding(.vertical, 2)
                     }
@@ -32,7 +32,7 @@ struct KegListView: View {
             .refreshable { await appState.loadAll() }
             .navigationTitle("Kegs")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(isEditing ? "Done" : "Reorder") {
                         withAnimation { isEditing.toggle() }
                     }

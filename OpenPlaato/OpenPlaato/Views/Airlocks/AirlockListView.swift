@@ -16,7 +16,7 @@ struct AirlockListView: View {
                             Spacer()
                             Label(airlock.bubblesFormatted, systemImage: "bubble.left.fill")
                         }
-                        .font(.subheadline).foregroundStyle(.secondary)
+                        .font(.subheadline).foregroundColor(.secondary)
                     }
                     .padding(.vertical, 2)
                 }
@@ -28,12 +28,12 @@ struct AirlockListView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "wind")
                             .font(.system(size: 48))
-                            .foregroundStyle(.secondary)
+                            .foregroundColor(.secondary)
                         Text("No Airlocks")
                             .font(.headline)
                         Text("No PLAATO airlocks found")
                             .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
             }

@@ -13,10 +13,10 @@ struct TapListView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "drop.fill")
                             .font(.system(size: 48))
-                            .foregroundStyle(.secondary)
+                            .foregroundColor(.secondary)
                         Text("No Taps").font(.headline)
                         Text("Tap + to create a tap")
-                            .font(.subheadline).foregroundStyle(.secondary)
+                            .font(.subheadline).foregroundColor(.secondary)
                     }
                 } else {
                     List(appState.taps) { tap in
@@ -33,7 +33,7 @@ struct TapListView: View {
             }
             .navigationTitle("Taps")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 16) {
                         Button { Task { await appState.loadAll() } } label: {
                             Image(systemName: "arrow.clockwise")
@@ -51,7 +51,7 @@ struct TapListView: View {
                         name: "New Tap"
                     ))
                     .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
+                        ToolbarItem(placement: .navigationBarLeading) {
                             Button("Cancel") { showCreateTap = false }
                         }
                     }

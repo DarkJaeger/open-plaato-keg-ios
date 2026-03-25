@@ -58,7 +58,7 @@ struct BeverageEditView: View {
         .navigationTitle(beer.name.isEmpty ? "New Beverage" : beer.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") { save() }.disabled(isSaving || name.isEmpty)
             }
         }

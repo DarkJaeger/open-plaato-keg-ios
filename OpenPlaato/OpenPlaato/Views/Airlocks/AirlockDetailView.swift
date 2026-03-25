@@ -71,7 +71,7 @@ struct AirlockDetailView: View {
                 TextField("Specific Gravity", text: $gfSg)
                     .keyboardType(.decimalPad)
                 TextField("Webhook URL", text: $gfUrl)
-                    .textInputAutocapitalization(.never)
+                    .autocapitalization(.none)
                     .keyboardType(.URL)
                 Button("Save Grainfather Settings") {
                     save {
@@ -109,7 +109,7 @@ struct AirlockDetailView: View {
                 TextField("Batch Volume", text: $bfBatchVol)
                     .keyboardType(.decimalPad)
                 TextField("Custom Stream URL", text: $bfUrl)
-                    .textInputAutocapitalization(.never)
+                    .autocapitalization(.none)
                     .keyboardType(.URL)
                 Button("Save Brewfather Settings") {
                     save {

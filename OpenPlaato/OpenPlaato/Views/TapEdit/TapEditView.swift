@@ -38,14 +38,14 @@ struct TapEditView: View {
 
             Section {
                 TextField("e.g. tap1", text: $deviceId)
-                    .textInputAutocapitalization(.never)
-                    .onChange(of: deviceId) { _, newVal in
-                        if newVal.count > 6 { deviceId = String(newVal.prefix(6)) }
+                    .autocapitalization(.none)
+                    .onChange(of: deviceId) { val in
+                        if val.count > 6 { deviceId = String(val.prefix(6)) }
                     }
                 if !deviceId.isEmpty {
                     Text("Enter **\(deviceId)** as the Keg ID in your open-tap WiFi setup screen.")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.secondary)
                 }
             } header: {
                 Text("Open-Tap Device ID (max 6 chars)")
@@ -96,7 +96,7 @@ struct TapEditView: View {
         .navigationTitle(tap.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") { save() }.disabled(isSaving)
             }
         }
@@ -123,7 +123,7 @@ struct TapEditView: View {
     private var beverageAutoFillSection: some View {
         Section("Auto-fill from Beverage") {
             if appState.beers.isEmpty {
-                Text("No beverages available").foregroundStyle(.secondary)
+                Text("No beverages available").foregroundColor(.secondary)
             } else {
                 ForEach(appState.beers) { beer in
                     Button {
@@ -131,14 +131,14 @@ struct TapEditView: View {
                     } label: {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(beer.name).foregroundStyle(.primary)
+                                Text(beer.name).foregroundColor(.primary)
                                 if let s = beer.style, !s.isEmpty {
-                                    Text(s).font(.caption).foregroundStyle(.secondary)
+                                    Text(s).font(.caption).foregroundColor(.secondary)
                                 }
                             }
                             Spacer()
                             Image(systemName: "arrow.down.doc")
-                                .foregroundStyle(Color.accentColor)
+                                .foregroundColor(.accentColor)
                         }
                     }
                 }

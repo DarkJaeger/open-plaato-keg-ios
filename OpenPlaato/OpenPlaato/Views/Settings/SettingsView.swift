@@ -22,7 +22,7 @@ struct SettingsView: View {
             Form {
                 Section("Server") {
                     TextField("Server URL", text: $serverURL)
-                        .textInputAutocapitalization(.never)
+                        .autocapitalization(.none)
                         .keyboardType(.URL)
                     Button("Reconnect") {
                         WebSocketService.shared.disconnect()
@@ -33,20 +33,20 @@ struct SettingsView: View {
 
                 Section("Notifications") {
                     Toggle("Pour Notifications", isOn: $pourNotificationsEnabled)
-                        .onChange(of: pourNotificationsEnabled) { _, newVal in
-                            if newVal { requestNotificationPermission() }
+                        .onChange(of: pourNotificationsEnabled) { enabled in
+                            if enabled { requestNotificationPermission() }
                         }
                     Toggle("Keg Running Low", isOn: $notificationsEnabled)
-                        .onChange(of: notificationsEnabled) { _, newVal in
-                            if newVal { requestNotificationPermission() }
+                        .onChange(of: notificationsEnabled) { enabled in
+                            if enabled { requestNotificationPermission() }
                         }
                 }
 
                 Section("App Config") {
                     Toggle("Airlock Support", isOn: $airlockEnabled)
-                        .onChange(of: airlockEnabled) { _, newVal in
+                        .onChange(of: airlockEnabled) { enabled in
                             Task {
-                                do { try await APIService.shared.setAirlockEnabled(newVal) }
+                                do { try await APIService.shared.setAirlockEnabled(enabled) }
                                 catch {
                                     alertMsg = error.localizedDescription
                                     showAlert = true
@@ -58,10 +58,10 @@ struct SettingsView: View {
                 Section("Brewfather") {
                     if brewfatherConfigured {
                         Label("Credentials configured", systemImage: "checkmark.circle.fill")
-                            .foregroundStyle(.green)
+                            .foregroundColor(.green)
                     }
                     TextField("User ID", text: $bfUserId)
-                        .textInputAutocapitalization(.never)
+                        .autocapitalization(.none)
                     SecureField("API Key", text: $bfApiKey)
                     Button(isSavingBF ? "Saving..." : "Save Credentials") {
                         saveBrewfatherCreds()
