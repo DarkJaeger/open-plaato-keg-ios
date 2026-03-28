@@ -19,13 +19,11 @@ extension Color {
     static let onSurface        = Color(red: 229.0/255, green: 229.0/255, blue: 229.0/255) // #E5E5E5
     static let onSurfaceMuted   = Color(red: 156.0/255, green: 163.0/255, blue: 175.0/255) // #9CA3AF
 
-    // Status colors
-    static let pouringGreen = Color(red: 34.0/255, green: 197.0/255, blue: 94.0/255)  // #22C55E
-    static let lowRed = Color(red: 239.0/255, green: 68.0/255, blue: 68.0/255)        // #EF4444
+    // Status colors (pouringGreen and lowRed are defined in the asset catalog)
 
-    static let kegGreen  = pouringGreen
+    static let kegGreen  = Color.pouringGreen
     static let kegOrange = amber500
-    static let kegRed    = lowRed
+    static let kegRed    = Color.lowRed
 
     static func forPercent(_ pct: Double) -> Color {
         if pct > 50 { return .kegGreen }
@@ -82,7 +80,9 @@ extension UIImage {
             x: (size.width - scaledSize.width) / 2,
             y: (size.height - scaledSize.height) / 2
         )
-        let renderer = UIGraphicsImageRenderer(size: size)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1.0
+        let renderer = UIGraphicsImageRenderer(size: size, format: format)
         return renderer.image { _ in
             self.draw(in: CGRect(origin: origin, size: scaledSize))
         }
