@@ -61,9 +61,16 @@ class APIService {
         body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
         req.httpBody = body
 
-        let (data, _) = try await URLSession.shared.data(for: req)
+        let (data, response) = try await URLSession.shared.data(for: req)
+        if let http = response as? HTTPURLResponse, http.statusCode != 200 {
+            let msg = (try? JSONDecoder().decode([String: String].self, from: data))?["error"] ?? "Upload failed (\(http.statusCode))"
+            throw NSError(domain: "APIService", code: http.statusCode, userInfo: [NSLocalizedDescriptionKey: msg])
+        }
         let json = try JSONDecoder().decode([String: String].self, from: data)
-        return json["filename"] ?? ""
+        guard let filename = json["filename"], !filename.isEmpty else {
+            throw NSError(domain: "APIService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Server returned no filename"])
+        }
+        return filename
     }
 
     // MARK: - Kegs
