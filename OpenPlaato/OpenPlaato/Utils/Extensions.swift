@@ -76,9 +76,15 @@ extension View {
 
 extension UIImage {
     func resizedTo(_ size: CGSize) -> UIImage {
+        let scale = max(size.width / self.size.width, size.height / self.size.height)
+        let scaledSize = CGSize(width: self.size.width * scale, height: self.size.height * scale)
+        let origin = CGPoint(
+            x: (size.width - scaledSize.width) / 2,
+            y: (size.height - scaledSize.height) / 2
+        )
         let renderer = UIGraphicsImageRenderer(size: size)
         return renderer.image { _ in
-            self.draw(in: CGRect(origin: .zero, size: size))
+            self.draw(in: CGRect(origin: origin, size: scaledSize))
         }
     }
 }
