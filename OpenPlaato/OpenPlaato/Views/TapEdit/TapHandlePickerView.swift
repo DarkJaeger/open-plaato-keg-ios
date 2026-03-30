@@ -7,7 +7,8 @@ struct TapHandlePickerView: View {
     @Environment(\.dismiss) private var dismiss
 
     private var baseURL: String {
-        UserDefaults.standard.string(forKey: "serverURL") ?? "http://192.168.8.141:8085"
+        let stored = UserDefaults.standard.string(forKey: "serverURL") ?? ""
+        return stored.isEmpty ? "http://192.168.8.141:8085" : stored
     }
 
     var body: some View {
