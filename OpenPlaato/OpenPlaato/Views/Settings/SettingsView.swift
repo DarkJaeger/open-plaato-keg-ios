@@ -58,6 +58,11 @@ struct SettingsView: View {
                                 }
                             }
                         }
+
+                    NavigationLink("Rearrange Tab Bar") {
+                        TabOrderView()
+                            .environmentObject(appState)
+                    }
                 }
 
                 Section("Brewfather") {

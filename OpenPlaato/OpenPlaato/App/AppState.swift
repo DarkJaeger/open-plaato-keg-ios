@@ -1,5 +1,38 @@
 import Foundation
 
+enum AppTab: String, CaseIterable, Identifiable {
+    case taps
+    case kegs
+    case airlocks
+    case transfers
+    case beers
+    case settings
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .taps: return "Taps"
+        case .kegs: return "Kegs"
+        case .airlocks: return "Airlocks"
+        case .transfers: return "Transfers"
+        case .beers: return "Beers"
+        case .settings: return "Settings"
+        }
+    }
+
+    var systemImage: String {
+        switch self {
+        case .taps: return "drop.fill"
+        case .kegs: return "cylinder.fill"
+        case .airlocks: return "wind"
+        case .transfers: return "scale.3d"
+        case .beers: return "mug.fill"
+        case .settings: return "gearshape.fill"
+        }
+    }
+}
+
 @MainActor
 class AppState: ObservableObject {
     @Published var taps: [Tap] = []
@@ -7,6 +40,7 @@ class AppState: ObservableObject {
     @Published var beers: [Beer] = []
     @Published var airlocks: [Airlock] = []
     @Published var transferScales: [TransferScale] = []
+    @Published var tabOrder: [AppTab] = AppTab.allCases
     @Published var isLoading = false
     @Published var errorMessage: String?
 
@@ -14,6 +48,7 @@ class AppState: ObservableObject {
     private let ws  = WebSocketService.shared
 
     private let kegOrderKey = "kegOrder"
+    private let tabOrderKey = "tabOrder"
 
     var orderedKegs: [Keg] {
         let savedOrder = UserDefaults.standard.stringArray(forKey: kegOrderKey) ?? []
@@ -33,6 +68,8 @@ class AppState: ObservableObject {
     }
 
     init() {
+        loadTabOrder()
+
         ws.onKegUpdate = { [weak self] updatedKeg in
             guard let self else { return }
             if let idx = self.kegs.firstIndex(where: { $0.id == updatedKeg.id }) {
@@ -60,6 +97,34 @@ class AppState: ObservableObject {
             }
         }
         ws.connect()
+    }
+
+    func moveTab(from source: IndexSet, to destination: Int) {
+        tabOrder.move(fromOffsets: source, toOffset: destination)
+        saveTabOrder()
+    }
+
+    func resetTabOrder() {
+        tabOrder = AppTab.allCases
+        saveTabOrder()
+    }
+
+    private func loadTabOrder() {
+        let saved = UserDefaults.standard.stringArray(forKey: tabOrderKey) ?? []
+        if saved.isEmpty {
+            tabOrder = AppTab.allCases
+            return
+        }
+
+        var ordered = saved.compactMap(AppTab.init(rawValue:))
+        for tab in AppTab.allCases where !ordered.contains(tab) {
+            ordered.append(tab)
+        }
+        tabOrder = ordered
+    }
+
+    private func saveTabOrder() {
+        UserDefaults.standard.set(tabOrder.map(\.rawValue), forKey: tabOrderKey)
     }
 
     func loadAll() async {
