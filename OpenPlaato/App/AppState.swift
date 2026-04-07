@@ -6,6 +6,7 @@ class AppState: ObservableObject {
     @Published var kegs: [Keg] = []
     @Published var beers: [Beer] = []
     @Published var airlocks: [Airlock] = []
+    @Published var transferScales: [TransferScale] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
 
@@ -27,6 +28,16 @@ class AppState: ObservableObject {
                 self.airlocks.append(updatedAirlock)
             }
         }
+        ws.onTransferScaleUpdate = { [weak self] updatedScale in
+            guard let self else { return }
+            if let idx = self.transferScales.firstIndex(where: { $0.id == updatedScale.id }) {
+                var existing = self.transferScales[idx]
+                existing.raw_weight = updatedScale.raw_weight
+                existing.fill_percent = updatedScale.fill_percent
+                existing.last_updated = updatedScale.last_updated
+                self.transferScales[idx] = existing
+            }
+        }
         ws.connect()
     }
 
@@ -38,7 +49,19 @@ class AppState: ObservableObject {
             async let k = api.fetchKegs()
             async let b = api.fetchBeers()
             async let a = api.fetchAirlocks()
-            (taps, kegs, beers, airlocks) = try await (t, k, b, a)
+            async let ts = api.fetchTransferScales()
+            (taps, kegs, beers, airlocks, transferScales) = try await (t, k, b, a, ts)
+            
+            // Fetch full details for each transfer scale
+            var fullScales: [TransferScale] = []
+            for scale in transferScales {
+                if let fullScale = try? await api.fetchTransferScale(scale.id) {
+                    fullScales.append(fullScale)
+                } else {
+                    fullScales.append(scale)
+                }
+            }
+            self.transferScales = fullScales
         } catch {
             errorMessage = error.localizedDescription
         }

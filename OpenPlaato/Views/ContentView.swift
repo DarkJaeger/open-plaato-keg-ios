@@ -12,6 +12,9 @@ struct ContentView: View {
             AirlockListView()
                 .tabItem { Label("Airlocks", systemImage: "wind") }
 
+            TransferListView()
+                .tabItem { Label("Transfers", systemImage: "scale.3d") }
+
             BeverageListView()
                 .tabItem { Label("Beers", systemImage: "mug.fill") }
 
