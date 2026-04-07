@@ -202,4 +202,23 @@ class APIService {
     func setBrewfather(_ id: String, body: BrewfatherBody) async throws {
         try await post("/api/airlocks/\(id)/brewfather", body: body)
     }
+
+    // MARK: - Transfer Scales
+    func fetchTransferScales() async throws -> [TransferScale] {
+        let (data, _) = try await URLSession.shared.data(from: url("/api/transfer-scales"))
+        return try JSONDecoder().decode([TransferScale].self, from: data)
+    }
+
+    func fetchTransferScale(_ id: String) async throws -> TransferScale {
+        let (data, _) = try await URLSession.shared.data(from: url("/api/transfer-scales/\(id)"))
+        return try JSONDecoder().decode(TransferScale.self, from: data)
+    }
+
+    func configureTransferScale(_ id: String, body: TransferScaleConfigBody) async throws {
+        try await post("/api/transfer-scales/\(id)/config", body: body)
+    }
+
+    func deleteTransferScale(_ id: String) async throws {
+        try await postEmpty("/api/transfer-scales/\(id)/delete")
+    }
 }

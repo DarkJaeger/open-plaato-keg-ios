@@ -8,6 +8,7 @@ class WebSocketService: NSObject, ObservableObject, URLSessionWebSocketDelegate 
     private var session: URLSession?
     var onKegUpdate: ((Keg) -> Void)?
     var onAirlockUpdate: ((Airlock) -> Void)?
+    var onTransferScaleUpdate: ((TransferScale) -> Void)?
 
     private var previousPouringState: [String: Bool] = [:]
 
@@ -58,6 +59,15 @@ class WebSocketService: NSObject, ObservableObject, URLSessionWebSocketDelegate 
            let innerJSON = try? JSONSerialization.data(withJSONObject: innerData),
            let airlock = try? JSONDecoder().decode(Airlock.self, from: innerJSON) {
             DispatchQueue.main.async { self.onAirlockUpdate?(airlock) }
+            return
+        }
+
+        if let envelope = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+           envelope["type"] as? String == "transfer_scale",
+           let innerData = envelope["data"],
+           let innerJSON = try? JSONSerialization.data(withJSONObject: innerData),
+           let transferScale = try? JSONDecoder().decode(TransferScale.self, from: innerJSON) {
+            DispatchQueue.main.async { self.onTransferScaleUpdate?(transferScale) }
             return
         }
 

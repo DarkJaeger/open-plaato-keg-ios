@@ -36,6 +36,10 @@
 		AA0001072F74000000000004 /* BeverageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001060F74000000000004 /* BeverageEditView.swift */; };
 		AA0001092F74000000000005 /* TapHandlePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0001080F74000000000005 /* TapHandlePickerView.swift */; };
 		AA00010B0F74000000000006 /* BrewfatherBatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00010A0F74000000000006 /* BrewfatherBatchListView.swift */; };
+		AA0002012F75000000000001 /* TransferScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002112F75000000000001 /* TransferScale.swift */; };
+		AA0002022F75000000000002 /* TransferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002122F75000000000002 /* TransferListView.swift */; };
+		AA0002032F75000000000003 /* TransferScaleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002132F75000000000003 /* TransferScaleCard.swift */; };
+		AA0002042F75000000000004 /* TransferScaleConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0002142F75000000000004 /* TransferScaleConfigView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,10 @@
 		AA0001060F74000000000004 /* BeverageEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeverageEditView.swift; sourceTree = "<group>"; };
 		AA0001080F74000000000005 /* TapHandlePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapHandlePickerView.swift; sourceTree = "<group>"; };
 		AA00010A0F74000000000006 /* BrewfatherBatchListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrewfatherBatchListView.swift; sourceTree = "<group>"; };
+		AA0002112F75000000000001 /* TransferScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferScale.swift; sourceTree = "<group>"; };
+		AA0002122F75000000000002 /* TransferListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferListView.swift; sourceTree = "<group>"; };
+		AA0002132F75000000000003 /* TransferScaleCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferScaleCard.swift; sourceTree = "<group>"; };
+		AA0002142F75000000000004 /* TransferScaleConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferScaleConfigView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +192,7 @@
 				517B04442F64EDB0002A3C46 /* TapList */,
 				517B04472F64EDB0002A3C46 /* Beverages */,
 				AA00010C0F74000000000007 /* Brewfather */,
+				AA0002202F75000000000005 /* Transfers */,
 				517B04492F64EDB0002A3C46 /* ContentView.swift */,
 			);
 			path = Views;
@@ -259,6 +268,7 @@
 				517B044F2F64EDB0002A3C46 /* Beer.swift */,
 				517B04502F64EDB0002A3C46 /* Airlock.swift */,
 				517B04512F64EDB0002A3C46 /* Keg.swift */,
+				AA0002112F75000000000001 /* TransferScale.swift */,
 				AA0001002F74000000000001 /* APITypes.swift */,
 			);
 			path = Models;
@@ -279,6 +289,16 @@
 				AA00010A0F74000000000006 /* BrewfatherBatchListView.swift */,
 			);
 			path = Brewfather;
+			sourceTree = "<group>";
+		};
+		AA0002202F75000000000005 /* Transfers */ = {
+			isa = PBXGroup;
+			children = (
+				AA0002122F75000000000002 /* TransferListView.swift */,
+				AA0002132F75000000000003 /* TransferScaleCard.swift */,
+				AA0002142F75000000000004 /* TransferScaleConfigView.swift */,
+			);
+			path = Transfers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +458,10 @@
 				AA0001072F74000000000004 /* BeverageEditView.swift in Sources */,
 				AA0001092F74000000000005 /* TapHandlePickerView.swift in Sources */,
 				AA00010B0F74000000000006 /* BrewfatherBatchListView.swift in Sources */,
+				AA0002012F75000000000001 /* TransferScale.swift in Sources */,
+				AA0002022F75000000000002 /* TransferListView.swift in Sources */,
+				AA0002032F75000000000003 /* TransferScaleCard.swift in Sources */,
+				AA0002042F75000000000004 /* TransferScaleConfigView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@ class AppState: ObservableObject {
     @Published var kegs: [Keg] = []
     @Published var beers: [Beer] = []
     @Published var airlocks: [Airlock] = []
+    @Published var transferScales: [TransferScale] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
 
@@ -46,6 +47,18 @@ class AppState: ObservableObject {
                 self.airlocks.append(updatedAirlock)
             }
         }
+        ws.onTransferScaleUpdate = { [weak self] updatedScale in
+            guard let self else { return }
+            if let idx = self.transferScales.firstIndex(where: { $0.id == updatedScale.id }) {
+                var existing = self.transferScales[idx]
+                existing.raw_weight = updatedScale.raw_weight
+                existing.fill_percent = updatedScale.fill_percent
+                existing.last_updated = updatedScale.last_updated
+                self.transferScales[idx] = existing
+            } else {
+                self.transferScales.append(updatedScale)
+            }
+        }
         ws.connect()
     }
 
@@ -57,10 +70,33 @@ class AppState: ObservableObject {
             async let k = api.fetchKegs()
             async let b = api.fetchBeers()
             async let a = api.fetchAirlocks()
-            (taps, kegs, beers, airlocks) = try await (t, k, b, a)
+            async let ts = api.fetchTransferScales()
+            (taps, kegs, beers, airlocks, transferScales) = try await (t, k, b, a, ts)
+            await hydrateTransferScaleDetails()
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+    func refreshTransferScales() async {
+        do {
+            transferScales = try await api.fetchTransferScales()
+            await hydrateTransferScaleDetails()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func hydrateTransferScaleDetails() async {
+        var full: [TransferScale] = []
+        for scale in transferScales {
+            if let detailed = try? await api.fetchTransferScale(scale.id) {
+                full.append(detailed)
+            } else {
+                full.append(scale)
+            }
+        }
+        transferScales = full
     }
 
     func keg(for tap: Tap) -> Keg? {
