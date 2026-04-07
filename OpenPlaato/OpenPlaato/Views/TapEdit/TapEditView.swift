@@ -12,17 +12,32 @@ struct TapEditView: View {
     @State private var showDeleteConfirm = false
     @Environment(\.dismiss) private var dismiss
 
-    @State private var name: String = ""
-    @State private var brewery: String = ""
-    @State private var style: String = ""
-    @State private var abv: String = ""
-    @State private var ibu: String = ""
-    @State private var color: String = "#c9a849"
-    @State private var beerDescription: String = ""
-    @State private var tastingNotes: String = ""
+    @State private var name: String
+    @State private var brewery: String
+    @State private var style: String
+    @State private var abv: String
+    @State private var ibu: String
+    @State private var color: String
+    @State private var beerDescription: String
+    @State private var tastingNotes: String
     @State private var kegId: String?
-    @State private var deviceId: String = ""
+    @State private var deviceId: String
     @State private var handleImage: String?
+
+    init(tap: Tap) {
+        _tap = State(initialValue: tap)
+        _name = State(initialValue: tap.name)
+        _brewery = State(initialValue: tap.brewery ?? "")
+        _style = State(initialValue: tap.style ?? "")
+        _abv = State(initialValue: tap.abv ?? "")
+        _ibu = State(initialValue: tap.ibu ?? "")
+        _color = State(initialValue: tap.color ?? "#c9a849")
+        _beerDescription = State(initialValue: tap.description ?? "")
+        _tastingNotes = State(initialValue: tap.tastingNotes ?? "")
+        _kegId = State(initialValue: tap.kegId)
+        _deviceId = State(initialValue: tap.deviceId ?? "")
+        _handleImage = State(initialValue: tap.handleImage)
+    }
 
     var body: some View {
         Form {
@@ -115,7 +130,7 @@ struct TapEditView: View {
         } message: {
             Text("This tap will be permanently removed.")
         }
-        .onAppear { populateFields() }
+
     }
 
     // MARK: - Beverage Auto-fill
@@ -159,20 +174,6 @@ struct TapEditView: View {
             get: { Color(hex: color) ?? .orange },
             set: { color = $0.toHex() }
         )
-    }
-
-    private func populateFields() {
-        name = tap.name
-        brewery = tap.brewery ?? ""
-        style = tap.style ?? ""
-        abv = tap.abv ?? ""
-        ibu = tap.ibu ?? ""
-        color = tap.color ?? "#c9a849"
-        beerDescription = tap.description ?? ""
-        tastingNotes = tap.tastingNotes ?? ""
-        kegId = tap.kegId
-        deviceId = tap.deviceId ?? ""
-        handleImage = tap.handleImage
     }
 
     private func fillFromBeverage(_ beer: Beer) {

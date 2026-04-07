@@ -26,7 +26,8 @@ struct Tap: Identifiable, Codable {
 
     var handleImageUrl: String? {
         guard let img = handleImage, !img.isEmpty else { return nil }
-        let base = UserDefaults.standard.string(forKey: "serverURL") ?? "http://192.168.8.141:8085"
+        let stored = UserDefaults.standard.string(forKey: "serverURL") ?? ""
+        let base = stored.isEmpty ? "http://192.168.8.141:8085" : stored
         return "\(base)/uploads/tap-handles/\(img)"
     }
 }

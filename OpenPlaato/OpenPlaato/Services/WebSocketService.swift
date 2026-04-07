@@ -12,7 +12,8 @@ class WebSocketService: NSObject, ObservableObject, URLSessionWebSocketDelegate 
     private var previousPouringState: [String: Bool] = [:]
 
     private var baseURL: String {
-        UserDefaults.standard.string(forKey: "serverURL") ?? "http://192.168.8.141:8085"
+        let stored = UserDefaults.standard.string(forKey: "serverURL") ?? ""
+        return stored.isEmpty ? "http://192.168.8.141:8085" : stored
     }
 
     func connect() {

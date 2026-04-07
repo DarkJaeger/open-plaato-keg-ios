@@ -7,6 +7,7 @@ struct SettingsView: View {
     @AppStorage("notificationsEnabled") private var notificationsEnabled = false
     @EnvironmentObject var appState: AppState
 
+    @State private var urlText = ""
     @State private var airlockEnabled = false
     @State private var brewfatherConfigured = false
     @State private var bfUserId = ""
@@ -21,14 +22,18 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section("Server") {
-                    TextField("Server URL", text: $serverURL)
+                    TextField("Server URL", text: $urlText)
                         .autocapitalization(.none)
                         .keyboardType(.URL)
                     Button("Reconnect") {
+                        let trimmed = urlText.trimmingCharacters(in: .whitespacesAndNewlines)
+                        guard !trimmed.isEmpty, URL(string: trimmed) != nil else { return }
+                        serverURL = trimmed
                         WebSocketService.shared.disconnect()
                         WebSocketService.shared.connect()
                         Task { await appState.loadAll() }
                     }
+                    .disabled(urlText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
 
                 Section("Notifications") {
@@ -80,6 +85,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .onAppear { urlText = serverURL }
             .task { await loadConfig() }
             .sheet(isPresented: $showBatches) {
                 BrewfatherBatchListView()

@@ -31,7 +31,6 @@ struct OpenPlaatoApp: App {
         navAppearance.titleTextAttributes = [.foregroundColor: onSurface]
         navAppearance.largeTitleTextAttributes = [.foregroundColor: onSurface]
         UINavigationBar.appearance().standardAppearance = navAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navAppearance
         UINavigationBar.appearance().compactAppearance = navAppearance
         UINavigationBar.appearance().tintColor = amber
 
