@@ -10,6 +10,7 @@ struct ContentView: View {
                     .tabItem { Label(tab.title, systemImage: tab.systemImage) }
             }
         }
+        .id(appState.tabOrder.map(\.rawValue).joined(separator: ","))
         .tint(.amber500)
     }
 
