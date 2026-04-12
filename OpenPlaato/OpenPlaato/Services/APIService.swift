@@ -4,7 +4,7 @@ class APIService {
     static let shared = APIService()
     private var baseURL: String {
         let stored = UserDefaults.standard.string(forKey: "serverURL") ?? ""
-        return stored.isEmpty ? "http://192.168.8.141:8085" : stored
+        return normalizeBaseURL(stored.isEmpty ? "http://192.168.8.141:8085" : stored)
     }
 
     private func url(_ path: String) throws -> URL {
@@ -12,6 +12,43 @@ class APIService {
             throw URLError(.badURL)
         }
         return url
+    }
+
+    private func normalizeBaseURL(_ value: String) -> String {
+        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        guard !trimmed.isEmpty else { return "" }
+        if trimmed.hasPrefix("http://") || trimmed.hasPrefix("https://") {
+            return trimmed
+        }
+        return "http://\(trimmed)"
+    }
+
+    private func normalizedVersion(_ version: String?) -> String? {
+        guard let trimmed = version?.trimmingCharacters(in: .whitespacesAndNewlines), !trimmed.isEmpty else { return nil }
+        return trimmed.hasPrefix("v") ? String(trimmed.dropFirst()) : trimmed
+    }
+
+    private func versionComponent(_ component: String?) -> Int {
+        guard let component else { return 0 }
+        if let value = Int(component) { return value }
+        let digits = component.filter(\.isNumber)
+        return Int(digits) ?? 0
+    }
+
+    private func isVersionOlder(_ currentVersion: String?, _ latestVersion: String?) -> Bool {
+        guard let currentVersion, let latestVersion else { return false }
+        let currentParts = currentVersion.split(whereSeparator: { $0 == "." || $0 == "-" || $0 == "_" }).map(String.init)
+        let latestParts = latestVersion.split(whereSeparator: { $0 == "." || $0 == "-" || $0 == "_" }).map(String.init)
+        let maxParts = max(currentParts.count, latestParts.count)
+
+        for index in 0..<maxParts {
+            let current = versionComponent(index < currentParts.count ? currentParts[index] : nil)
+            let latest = versionComponent(index < latestParts.count ? latestParts[index] : nil)
+            if current < latest { return true }
+            if current > latest { return false }
+        }
+
+        return false
     }
 
     private func post<T: Encodable>(_ path: String, body: T) async throws {
@@ -220,5 +257,39 @@ class APIService {
 
     func deleteTransferScale(_ id: String) async throws {
         try await postEmpty("/api/transfer-scales/\(id)/delete")
+    }
+
+    // MARK: - Server Version
+    func fetchServerVersion() async throws -> String {
+        let (data, _) = try await URLSession.shared.data(from: url("/api/alive"))
+        let alive = try JSONDecoder().decode(AliveResponse.self, from: data)
+        guard let version = normalizedVersion(alive.version) else {
+            throw NSError(domain: "APIService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Version field missing in /api/alive response"])
+        }
+        return version
+    }
+
+    func fetchLatestGithubVersion() async throws -> String {
+        guard let url = URL(string: "https://api.github.com/repos/DarkJaeger/open-plaato-keg/releases/latest") else {
+            throw URLError(.badURL)
+        }
+        var request = URLRequest(url: url)
+        request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let release = try JSONDecoder().decode(GithubLatestReleaseResponse.self, from: data)
+        guard let version = normalizedVersion(release.tagName) else {
+            throw NSError(domain: "APIService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Latest GitHub release tag missing"])
+        }
+        return version
+    }
+
+    func fetchServerVersionStatus() async throws -> ServerVersionStatus {
+        let serverVersion = try await fetchServerVersion()
+        let latestGithubVersion = try? await fetchLatestGithubVersion()
+        return ServerVersionStatus(
+            serverVersion: serverVersion,
+            latestGithubVersion: latestGithubVersion,
+            isUpdateAvailable: isVersionOlder(serverVersion, latestGithubVersion)
+        )
     }
 }

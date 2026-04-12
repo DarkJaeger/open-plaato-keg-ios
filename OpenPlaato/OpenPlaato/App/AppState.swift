@@ -41,6 +41,10 @@ class AppState: ObservableObject {
     @Published var airlocks: [Airlock] = []
     @Published var transferScales: [TransferScale] = []
     @Published var tabOrder: [AppTab] = AppTab.allCases
+    @Published var serverVersion: String?
+    @Published var latestGithubVersion: String?
+    @Published var serverVersionError: String?
+    @Published var serverUpdateMessage: String?
     @Published var isLoading = false
     @Published var errorMessage: String?
 
@@ -97,6 +101,7 @@ class AppState: ObservableObject {
             }
         }
         ws.connect()
+        Task { await refreshServerVersionStatus() }
     }
 
     func moveTab(from source: IndexSet, to destination: Int) {
@@ -138,8 +143,28 @@ class AppState: ObservableObject {
             async let ts = api.fetchTransferScales()
             (taps, kegs, beers, airlocks, transferScales) = try await (t, k, b, a, ts)
             await hydrateTransferScaleDetails()
+            await refreshServerVersionStatus()
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    func refreshServerVersionStatus() async {
+        do {
+            let status = try await api.fetchServerVersionStatus()
+            serverVersion = status.serverVersion
+            latestGithubVersion = status.latestGithubVersion
+            serverVersionError = nil
+            if status.isUpdateAvailable, let serverVersion = status.serverVersion, let latestGithubVersion = status.latestGithubVersion {
+                serverUpdateMessage = "Server update available: running \(serverVersion), latest is \(latestGithubVersion)."
+            } else {
+                serverUpdateMessage = nil
+            }
+        } catch {
+            serverVersion = nil
+            latestGithubVersion = nil
+            serverUpdateMessage = nil
+            serverVersionError = error.localizedDescription
         }
     }
 

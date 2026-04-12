@@ -19,13 +19,23 @@ struct TapListView: View {
                             .font(.subheadline).foregroundColor(.secondary)
                     }
                 } else {
-                    List(appState.taps) { tap in
-                        NavigationLink(destination: TapEditView(tap: tap)) {
-                            TapRowView(
-                                tap: tap,
-                                keg: appState.keg(for: tap),
-                                beer: appState.keg(for: tap).flatMap { appState.beer(for: $0) }
-                            )
+                    List {
+                        if let message = appState.serverUpdateMessage {
+                            Section {
+                                Text(message)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.orange)
+                            }
+                        }
+
+                        ForEach(appState.taps) { tap in
+                            NavigationLink(destination: TapEditView(tap: tap)) {
+                                TapRowView(
+                                    tap: tap,
+                                    keg: appState.keg(for: tap),
+                                    beer: appState.keg(for: tap).flatMap { appState.beer(for: $0) }
+                                )
+                            }
                         }
                     }
                     .refreshable { await appState.loadAll() }

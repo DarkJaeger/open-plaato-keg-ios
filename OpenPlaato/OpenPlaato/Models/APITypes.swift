@@ -117,3 +117,22 @@ struct BeverageSaveBody: Codable {
 struct TapHandleInfo: Codable {
     let filename: String
 }
+
+struct AliveResponse: Codable {
+    let version: String?
+    let status: String?
+}
+
+struct GithubLatestReleaseResponse: Codable {
+    let tagName: String?
+
+    enum CodingKeys: String, CodingKey {
+        case tagName = "tag_name"
+    }
+}
+
+struct ServerVersionStatus {
+    let serverVersion: String?
+    let latestGithubVersion: String?
+    let isUpdateAvailable: Bool
+}

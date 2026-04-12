@@ -25,15 +25,32 @@ struct SettingsView: View {
                     TextField("Server URL", text: $urlText)
                         .autocapitalization(.none)
                         .keyboardType(.URL)
+                    LabeledContent("Server Version", value: appState.serverVersion ?? "Unavailable")
+                    if let error = appState.serverVersionError {
+                        Text(error)
+                            .font(.caption)
+                            .foregroundStyle(.red)
+                    }
+                    if let message = appState.serverUpdateMessage {
+                        Text(message)
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                    }
                     Button("Reconnect") {
                         let trimmed = urlText.trimmingCharacters(in: .whitespacesAndNewlines)
-                        guard !trimmed.isEmpty, URL(string: trimmed) != nil else { return }
+                        guard !trimmed.isEmpty else { return }
                         serverURL = trimmed
                         WebSocketService.shared.disconnect()
                         WebSocketService.shared.connect()
-                        Task { await appState.loadAll() }
+                        Task {
+                            await appState.loadAll()
+                            await appState.refreshServerVersionStatus()
+                        }
                     }
                     .disabled(urlText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    Button("Refresh Version") {
+                        Task { await appState.refreshServerVersionStatus() }
+                    }
                 }
 
                 Section("Notifications") {
@@ -91,7 +108,10 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .onAppear { urlText = serverURL }
-            .task { await loadConfig() }
+            .task {
+                await loadConfig()
+                await appState.refreshServerVersionStatus()
+            }
             .sheet(isPresented: $showBatches) {
                 BrewfatherBatchListView()
                     .environmentObject(appState)
