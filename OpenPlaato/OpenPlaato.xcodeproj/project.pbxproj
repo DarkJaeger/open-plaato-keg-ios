@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		513736EB2F64DD370056ECA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 513736EA2F64DD370056ECA1 /* Assets.xcassets */; };
+		700000001234567800000001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 700000001234567800000002 /* LaunchScreen.storyboard */; };
 		513736F82F64DD370056ECA1 /* OpenPlaatoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513736F72F64DD370056ECA1 /* OpenPlaatoTests.swift */; };
 		513737022F64DD380056ECA1 /* OpenPlaatoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513737012F64DD380056ECA1 /* OpenPlaatoUITests.swift */; };
 		513737042F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513737032F64DD380056ECA1 /* OpenPlaatoUITestsLaunchTests.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		513736E32F64DD350056ECA1 /* OpenPlaato.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPlaato.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		513736EA2F64DD370056ECA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		700000001234567800000002 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		513736F32F64DD370056ECA1 /* OpenPlaatoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPlaatoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		513736F72F64DD370056ECA1 /* OpenPlaatoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPlaatoTests.swift; sourceTree = "<group>"; };
 		513736FD2F64DD370056ECA1 /* OpenPlaatoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPlaatoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +284,7 @@
 			children = (
 				517B04532F64EDB0002A3C46 /* AppState.swift */,
 				517B04542F64EDB0002A3C46 /* OpenPlaatoApp.swift */,
+				700000001234567800000002 /* LaunchScreen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				513736EB2F64DD370056ECA1 /* Assets.xcassets in Resources */,
+				700000001234567800000001 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,7 +645,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
@@ -677,7 +681,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
